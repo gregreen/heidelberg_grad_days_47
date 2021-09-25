@@ -30,3 +30,5 @@ Notebooks:
 ----------
 
 There are various [Jupyter notebooks](https://jupyter.org/) that students can use to explore some of the topics covered in this course.
+
+If you don't have Jupyter installed on your computer, these notebooks can be run in your browser directly, on [Google Colab](https://colab.research.google.com/).
