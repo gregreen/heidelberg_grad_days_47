@@ -23,7 +23,7 @@ Through this course, my hope is that students will gain familiarity not only wit
 Lecture Notes / Presentations:
 ------------------------------
 
-* Lecture 1: Large surveys.
+* [Lecture 1](lecture_notes/1_surveys.html): The Milky Way and Large Surveys.
 * [Lectures 2 & 3](lecture_notes/2_Probability.pdf): Probability theory and Bayesian inference.
 
 
