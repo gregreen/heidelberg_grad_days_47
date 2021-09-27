@@ -20,10 +20,11 @@ However, extracting information from these large datasets about the Milky Way re
 Through this course, my hope is that students will gain familiarity not only with Milky Way datasets, but that they will also gain hands-on experience with statistical methods that are applicable throughout many areas of science.
 
 
-Lecture Notes:
---------------
+Lecture Notes / Presentations:
+------------------------------
 
-Lecture notes / slides can be found in the folder `lecture_notes`.
+* Lecture 1: Large surveys.
+* [Lectures 2 & 3](lecture_notes/2_Probability.pdf): Probability theory and Bayesian inference.
 
 
 Notebooks:
