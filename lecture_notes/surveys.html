@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>MW Surveys</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/night.css" id="theme">
+  </head>
+
+  <style>
+    /* Attribution text */
+    p.attribution, p.attribution a {
+      font-size: 75%;
+      color: #aaa;
+    }
+
+    /* Slide-specific vertical centering override */
+    .reveal .slides section[data-vertical-align-top]{
+      top: 0 !important;
+    }
+
+    /* Invert colors - useful for adapting graphics for dark slides. */
+    img.invert-colors, video.invert-colors {
+      filter: invert(1);
+    }
+  </style>
+
+  <body>
+
+    <div class="reveal">
+
+      <div class="slides">
+
+        <section>
+          <h2>The Milky Way and Large Surveys</h2>
+          <p>Gregory Green</p>
+        </section>
+
+        <section>
+          <section>
+            <h2>Why Study the Milky Way?</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>History of study of the Milky Way</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Gaia</h2>
+          </section>
+
+          <section>
+            <h4>The Milky Way in 6D</h4>
+            <video data-autoplay loop data-src="../revealjs/media/gaia/Gaia_EDR3_StarTrails_768x432_lq.mp4"></video>
+            <p class="attribution"><a href="https://sci.esa.int/web/gaia/-/gaia-s-stellar-motion-for-the-next-1.6-million-years">ESA/Gaia/DPAC; A. Brown, S. Jordan, T. Roegiers, X. Luria, E. Masana, T. Prusti and A. Moitinho</a></p>
+          </section>
+
+          <section data-background="../revealjs/media/gaia/Gaia_EDR3_nsrc_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top>
+            <h4>Source density across the sky</h4>
+            <p class="attribution"><a href="https://sci.esa.int/s/8D04j58">ESA/Gaia/DPAC; A. Moitinho and M. Barros</a></p>
+            <aside class="notes">
+              <ul>
+                <li>Disk, bulge, dust lanes</li>
+                <li>LMC, SMC, bridge</li>
+                <li>M31, Triangulum</li>
+                <li>Sagittarius dwarf stream</li>
+                <li>Scanning patterns</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <p>Gravitational deflection of light by Solar System bodies</p>
+            <video data-autoplay loop data-src="../revealjs/media/gaia/Gravitational_light_deflection_-_movie_avi.mp4" class="invert-colors"></video>
+            <p class="attribution"><a href="https://sci.esa.int/web/gaia/media-gallery/videos">ESA/Jos de Bruijne</a></p>
+          </section>
+        </section>
+    </div>
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/math/math.js"></script>
+    <script>
+      Reveal.initialize({
+        history: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          TeX: {
+            Macros: {
+              R: '\\mathbb{R}',
+              set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+            }
+          }
+        },
+
+        plugins: [ RevealMath ]
+      });
+    </script>
+
+  </body>
+</html>
