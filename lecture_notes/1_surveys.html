@@ -28,6 +28,18 @@
     img.invert-colors, video.invert-colors {
       filter: invert(1);
     }
+
+    /* Basic slide layouts */
+    .twocol {
+      display: flex;
+      flex-direction: row;
+    }
+    .twocol div {
+      flex-grow 1;
+    }
+    .twocol div.wide {
+      flex-grow: 2;
+    }
   </style>
 
   <body>
@@ -62,6 +74,27 @@
             <h4>The Milky Way in 6D</h4>
             <video data-autoplay loop data-src="../revealjs/media/gaia/Gaia_EDR3_StarTrails_768x432_lq.mp4"></video>
             <p class="attribution"><a href="https://sci.esa.int/web/gaia/-/gaia-s-stellar-motion-for-the-next-1.6-million-years">ESA/Gaia/DPAC; A. Brown, S. Jordan, T. Roegiers, X. Luria, E. Masana, T. Prusti and A. Moitinho</a></p>
+          </section>
+
+          <section>
+            <h4>Astrometry: position & velocity</h4>
+            <div class="twocol">
+              <div>
+                <p>Parallax</p>
+                <img data-src="../revealjs/media/gaia/parallax_explanation.png"></img>
+                <p class="attribution"><a href="https://sci.esa.int/s/89ezKQ8">ESA/ATG medialab</a></p>
+              </div>
+              <div>
+                <p>Velocity</p>
+                <img data-src="../revealjs/media/gaia/velocity_explanation.png"></img>
+                <p class="attribution"><a href="https://sci.esa.int/s/AqpP3m8">ESA/ATG medialab</a></p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>How Gaia works</h4>
+            <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bbfb8VhH7L0?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </section>
 
           <section data-background="../revealjs/media/gaia/Gaia_EDR3_nsrc_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top>
