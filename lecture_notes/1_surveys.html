@@ -17,6 +17,7 @@
     p.attribution, p.attribution a {
       font-size: 75%;
       color: #aaa;
+      margin: calc(0.5 * var(--r-block-margin)) 0;
     }
 
     /* Slide-specific vertical centering override */
@@ -30,15 +31,26 @@
     }
 
     /* Basic slide layouts */
-    .twocol {
+    .multicol {
       display: flex;
       flex-direction: row;
     }
-    .twocol div {
-      flex-grow 1;
+    .multicol.vcenter {
+      align-items: center;
     }
-    .twocol div.wide {
-      flex-grow: 2;
+    .multicol div {
+      flex-basis: 50%;
+    }
+    .multicol div.wide {
+      flex-basis: 67%;
+    }
+    .multicol div.wider {
+      flex-basis: 100%;
+    }
+
+    /* Margins */
+    .space-top {
+      margin-top: calc(3 * var(--r-block-margin));
     }
   </style>
 
@@ -78,7 +90,7 @@
 
           <section>
             <h4>Astrometry: position & velocity</h4>
-            <div class="twocol">
+            <div class="multicol">
               <div>
                 <p>Parallax</p>
                 <img data-src="../revealjs/media/gaia/parallax_explanation.png"></img>
@@ -98,9 +110,78 @@
           </section>
 
           <section>
-            <p>Gravitational deflection of light by Solar System bodies</p>
+            <h4>Gravitational deflection of light by Solar System bodies</h4>
             <video data-autoplay loop data-src="../revealjs/media/gaia/Gravitational_light_deflection_-_movie_avi.mp4" class="invert-colors"></video>
             <p class="attribution"><a href="https://sci.esa.int/web/gaia/media-gallery/videos">ESA/Jos de Bruijne</a></p>
+          </section>
+
+          <section>
+            <div class="multicol">
+              <div>
+                <p>Radial Velocity Spectrometer</p>
+                <img style="width:50%;" data-src="../revealjs/media/gaia/gaia_rvs_optical_module.jpg"></img>
+                <p class="attribution"><a href="https://www.cosmos.esa.int/web/gaia/radial-velocity-spectrometer">EADS Astrium SAS, France</a></p>
+                <div class="space-top">
+                  <p class="fragment" data-fragment-index=1>Basic properties</p>
+                  <ul>
+                    <li class="fragment" data-fragment-index=1>Slitless spectroscopy - sources can overlap!</li>
+                    <li class="fragment" data-fragment-index=2>RV measured using Doppler shift of atomic lines.</li>
+                    <li class="fragment" data-fragment-index=3>Medium resolution: $R \equiv \lambda / \Delta\lambda \sim 11500$.</li>
+                    <li class="fragment" data-fragment-index=4>Measures RV to <1 km/s for bright stars.</li>
+                    <li class="fragment" data-fragment-index=5>Currently >7 million stars with measured RV. Will soon grow to >30 million.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="r-stack">
+                <div class="fragment fade-out" data-fragment-index=7>
+                  <p>Example spectrum on the CCD</p>
+                  <img data-src="../revealjs/media/gaia/gaia_rvs_spectrum_ccd.png"></img>
+                  <p>Flux vs. wavelength</p>
+                  <img data-src="../revealjs/media/gaia/gaia_rvs_spectrum.png"></img>
+                  <p class="attribution"><a href="https://doi.org/10.1051/0004-6361/201832763">Cropper et al. (2018)</a></p>
+                  <p class="fragment" data-fragment-index=6>&#10142; Ca II triplet of absorption lines critical to determining RV.</p>
+                </div>
+                <div class="fragment" data-fragment-index=7>
+                  <p>Different stellar types</p>
+                  <img data-src="../revealjs/media/gaia/gaia_rvs_multiple_spectra.png" style="max-width:70%;"></img>
+                  <p class="attribution"><a href="https://doi.org/10.1051/0004-6361/201832763">Cropper et al. (2018)</a></p>
+                  <p class="fragment" data-fragment-index=8>&#10142; Not all stellar types suitable for measuring RV.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>Average radial velocity over the sky</h4>
+            <img data-src="../revealjs/media/gaia/Gaia_DR2_Average_Rad_Vel.jpg"></img>
+            <p class="attribution"><a href="https://sci.esa.int/s/A6ymNQ8">ESA/Gaia/DPAC</a></p>
+            <aside class="notes">
+              <ul>
+                <li>Rotation curve of the Milky Way &#10142; gravitational field.</li>
+                <li>Individual objects: LMC, SMC, globular clusters.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h4>Velocities of local stars (&#60;200 pc)</h4>
+            <div class="multicol vcenter">
+              <div class="wider">
+                <img data-src="../revealjs/media/gaia/uvGaiaDR2.jpg"></img>
+              </div>
+              <div>
+                <p>Stars are clumpy in velocity space.</p>
+                <div class="space-top">
+                <p class="fragment">Different ways to get clumps:</p>
+                <ol>
+                  <li class="fragment">Stars are born in clouds, and take time to disperse.</li>
+                  <li class="fragment">Dynamical processes (e.g., resonances) shepherd stars into clumps.</li>
+                  <li class="fragment">Accreted galaxies are kinematically distinct from Milky Way stars.</li>
+                </ol>
+                </div>
+              </div>
+            </div>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2018A%26A...616A..11G/abstract">Gaia Collaboration, Katz, + (2018)</a></p>
           </section>
 
           <section data-background="../revealjs/media/gaia/Gaia_EDR3_nsrc_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top>
@@ -116,6 +197,7 @@
               </ul>
             </aside>
           </section>
+
         </section>
     </div>
 

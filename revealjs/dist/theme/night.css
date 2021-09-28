@@ -15,10 +15,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
 :root {
   --r-background-color: #000;
   --r-main-font: Open Sans, sans-serif;
-  --r-main-font-size: 30px;
+  --r-main-font-size: 20px;
   --r-main-color: #eee;
-  --r-block-margin: 20px;
-  --r-heading-margin: 0 0 20px 0;
+  --r-block-margin: 10px;
+  --r-heading-margin: 0 0 15px 0;
   --r-heading-font: Montserrat, Impact, sans-serif;
   --r-heading-color: #eee;
   --r-heading-line-height: 1.2;
@@ -27,10 +27,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   --r-heading-text-shadow: none;
   --r-heading-font-weight: normal;
   --r-heading1-text-shadow: none;
-  --r-heading1-size: 3.77em;
-  --r-heading2-size: 2.11em;
-  --r-heading3-size: 1.55em;
-  --r-heading4-size: 1em;
+  --r-heading1-size: 4.71em;
+  --r-heading2-size: 2.64em;
+  --r-heading3-size: 1.94em;
+  --r-heading4-size: 1.25em;
   --r-code-font: monospace;
   --r-link-color: #e7ad52;
   --r-link-color-dark: #d08a1d;
