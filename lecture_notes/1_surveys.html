@@ -31,7 +31,7 @@
     }
 
     /* Image width */
-    img.limit-width {
+    img.limit-width, video.limit-width {
       max-width: 70%;
     }
     img.full-width {
@@ -221,20 +221,29 @@
               <div class="wider">
                 <p class="fragment" data-fragment-index=0>Measuring absolute position on the sky to arcsecond ($=\frac{1}{3600} \, \mathrm{deg}$) precision is difficult.</p>
                 <p class="fragment" data-fragment-index=1>Galileo &amp; William Herschel proposed measuring angles between "double stars" <a href="https://doi.org/10.1098/rstl.1826.0023">(Herschel 1826)</a>.</p>
+                <p class="fragment" data-fragment-index=2>&rarr; Nearby stars have larger parallax than distant stars.</p>
+                <p class="fragment" data-fragment-index=3>&rarr; Angles between nearby stars easier to measure than absolute positions on sky.</p>
+                <div class="fragment space-top" data-fragment-index=4>
+                  <p>Massively exaggerated example:</p>
+                  <video data-src="../revealjs/media/gaia/esa_parallax.mp4" data-autoplay loop class="limit-width"></video>
+                  <p class="attribution"><a href="https://sci.esa.int/s/A1Yp2qA">ESA/Gaia/DPAC</a></p>
+                </div>
               </div>
               <div class="fragment" data-fragment-index=1>
                 <img data-src="../revealjs/media/gaia/William_Herschel.jpg"></img>
-                <p class="attribution"><a href="https://en.wikipedia.org/wiki/File:William_Herschel01.jpg">National Portrait Gallery, London</a></p>
+                <p class="attribution"><a href="https://en.wikipedia.org/wiki/File:William_Herschel01.jpg">William Herschel, National Portrait Gallery, London</a></p>
               </div>
             </div>
           </section>
 
           <section>
-            <h2>Gaia</h2>
+            <h4>History of astrometry</h4>
+            <img data-src="../revealjs/media/gaia/astrometry_accuracy_over_time.jpg" class="r-stretch"></img>
+            <p class="attribution"><a href="https://sci.esa.int/s/ABq2J28">ESA</a></p>
           </section>
 
           <section>
-            <h4>The Milky Way in 6D</h4>
+            <h4>Gaia: The Milky Way in 6D</h4>
             <video data-autoplay loop data-src="../revealjs/media/gaia/Gaia_EDR3_StarTrails_768x432_lq.mp4"></video>
             <p class="attribution"><a href="https://sci.esa.int/web/gaia/-/gaia-s-stellar-motion-for-the-next-1.6-million-years">ESA/Gaia/DPAC; A. Brown, S. Jordan, T. Roegiers, X. Luria, E. Masana, T. Prusti and A. Moitinho</a></p>
           </section>
