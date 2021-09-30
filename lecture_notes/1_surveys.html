@@ -30,6 +30,14 @@
       filter: invert(1);
     }
 
+    /* Image width */
+    img.limit-width {
+      max-width: 70%;
+    }
+    img.full-width {
+      width: 100%;
+    }
+
     /* Basic slide layouts */
     .multicol {
       display: flex;
@@ -51,6 +59,11 @@
     /* Margins */
     .space-top {
       margin-top: calc(3 * var(--r-block-margin));
+    }
+
+    /* Text alignment */
+    .align-left {
+      text-align: left;
     }
   </style>
 
@@ -80,10 +93,65 @@
 
         <section>
           <section>
+            <h1>Photometry</h1>
+            <h3>Fluxes of stars through broad filters</h3>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Sloan Digital Sky Survey (SDSS)</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Pan-STARRS 1</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>2MASS</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Dark Energy Camera Plane Survey (DECaPS)</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>LSST</h2>
+            <h3>(a.k.a. "The Future")</h3>
+          </section>
+        </section>
+
+        <section>
+          <h1>Spectroscopy</h1>
+          <h3>Flux as a function of wavelength</h3>
+        </section>
+
+        <section>
+          <section>
+            <h2>LAMOST</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>APOGEE (SDSS-IV)</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
             <h2>SDSS-V</h2>
             <img data-src="../revealjs/media/sdss-v/SDSSV_banner.jpg" class=""></img>
             <h4>Pioneering Panoptic Spectroscopy</h4>
-            <p class="fragment">The next generation of Milky Way spectroscopy</p>
+            <p class="fragment">The next generation of Milky Way (+ local volume) spectroscopy</p>
           </section>
 
           <section>
@@ -117,17 +185,12 @@
 
         <section>
           <section>
-            <h2>Gaia</h2>
+            <h1>Astrometry</h1>
+            <h3>Positions and velocities of stars</h3>
           </section>
 
           <section>
-            <h4>The Milky Way in 6D</h4>
-            <video data-autoplay loop data-src="../revealjs/media/gaia/Gaia_EDR3_StarTrails_768x432_lq.mp4"></video>
-            <p class="attribution"><a href="https://sci.esa.int/web/gaia/-/gaia-s-stellar-motion-for-the-next-1.6-million-years">ESA/Gaia/DPAC; A. Brown, S. Jordan, T. Roegiers, X. Luria, E. Masana, T. Prusti and A. Moitinho</a></p>
-          </section>
-
-          <section>
-            <h4>Astrometry: position & velocity</h4>
+            <h4>Astrometry: position &amp; velocity</h4>
             <div class="multicol">
               <div>
                 <p>Parallax</p>
@@ -142,9 +205,49 @@
             </div>
           </section>
 
+          <section data-background-video="../revealjs/media/gaia/esa_parallax.mp4" data-vertical-align-top>
+            <p>Parallax illustration</p>
+            <p class="attribution"><a href="https://sci.esa.int/s/A1Yp2qA">ESA/Gaia/DPAC</a></p>
+          </section>
+
+          <section data-background-video="../revealjs/media/gaia/esa_proper_motion.mp4" data-vertical-align-top>
+            <p>Parallax + proper motion illustration</p>
+            <p class="attribution"><a href="https://sci.esa.int/s/8kqv4Zw">ESA/Gaia/DPAC</a></p>
+          </section>
+
+          <section>
+            <h4>How to practically measure parallax &amp; proper motion?</h4>
+            <div class="multicol">
+              <div class="wider">
+                <p class="fragment" data-fragment-index=0>Measuring absolute position on the sky to arcsecond ($=\frac{1}{3600} \, \mathrm{deg}$) precision is difficult.</p>
+                <p class="fragment" data-fragment-index=1>Galileo &amp; William Herschel proposed measuring angles between "double stars" <a href="https://doi.org/10.1098/rstl.1826.0023">(Herschel 1826)</a>.</p>
+              </div>
+              <div class="fragment" data-fragment-index=1>
+                <img data-src="../revealjs/media/gaia/William_Herschel.jpg"></img>
+                <p class="attribution"><a href="https://en.wikipedia.org/wiki/File:William_Herschel01.jpg">National Portrait Gallery, London</a></p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Gaia</h2>
+          </section>
+
+          <section>
+            <h4>The Milky Way in 6D</h4>
+            <video data-autoplay loop data-src="../revealjs/media/gaia/Gaia_EDR3_StarTrails_768x432_lq.mp4"></video>
+            <p class="attribution"><a href="https://sci.esa.int/web/gaia/-/gaia-s-stellar-motion-for-the-next-1.6-million-years">ESA/Gaia/DPAC; A. Brown, S. Jordan, T. Roegiers, X. Luria, E. Masana, T. Prusti and A. Moitinho</a></p>
+          </section>
+
           <section>
             <h4>How Gaia works</h4>
             <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bbfb8VhH7L0?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </section>
+
+          <section>
+            <p>Gaia focal plane and instruments</p>
+            <img data-src="../revealjs/media/gaia/M4-au-plan-focal.png" class="limit-width"></img>
+            <p class="attribution"><a href="https://commons.wikimedia.org/wiki/File:M4-au-plan-focal.png">Wikimedia Commons</a></p>
           </section>
 
           <section>
@@ -158,35 +261,106 @@
               <div>
                 <p>Radial Velocity Spectrometer</p>
                 <img style="width:50%;" data-src="../revealjs/media/gaia/gaia_rvs_optical_module.jpg"></img>
-                <p class="attribution"><a href="https://www.cosmos.esa.int/web/gaia/radial-velocity-spectrometer">EADS Astrium SAS, France</a></p>
+                <p class="attribution"><a href="https://www.cosmos.esa.int/web/gaia/radial-velocity-spectrometer">Optical element of RVS. EADS Astrium SAS, France</a></p>
                 <div class="space-top">
-                  <p class="fragment" data-fragment-index=1>Basic properties</p>
+                  <p class="fragment">Basic properties</p>
                   <ul>
-                    <li class="fragment" data-fragment-index=1>Slitless spectroscopy - sources can overlap!</li>
-                    <li class="fragment" data-fragment-index=2>RV measured using Doppler shift of atomic lines.</li>
-                    <li class="fragment" data-fragment-index=3>Medium resolution: $R \equiv \lambda / \Delta\lambda \sim 11500$.</li>
-                    <li class="fragment" data-fragment-index=4>Measures RV to <1 km/s for bright stars.</li>
-                    <li class="fragment" data-fragment-index=5>Currently >7 million stars with measured RV. Will soon grow to >30 million.</li>
+                    <li class="fragment">RV measured using Doppler shift of atomic lines.</li>
+                    <li class="fragment">Medium resolution: $R \equiv \lambda / \Delta\lambda \sim 11500$.</li>
+                    <li class="fragment">Measures RV to <1 km/s for bright stars.</li>
+                    <li class="fragment">Currently >7 million stars with measured RV. Will soon grow to >30 million.</li>
                   </ul>
                 </div>
               </div>
               <div class="r-stack">
-                <div class="fragment fade-out" data-fragment-index=7>
+                <div>
                   <p>Example spectrum on the CCD</p>
                   <img data-src="../revealjs/media/gaia/gaia_rvs_spectrum_ccd.png"></img>
                   <p>Flux vs. wavelength</p>
                   <img data-src="../revealjs/media/gaia/gaia_rvs_spectrum.png"></img>
                   <p class="attribution"><a href="https://doi.org/10.1051/0004-6361/201832763">Cropper et al. (2018)</a></p>
-                  <p class="fragment" data-fragment-index=6>&#10142; Ca II triplet of absorption lines critical to determining RV.</p>
-                </div>
-                <div class="fragment" data-fragment-index=7>
-                  <p>Different stellar types</p>
-                  <img data-src="../revealjs/media/gaia/gaia_rvs_multiple_spectra.png" style="max-width:70%;"></img>
-                  <p class="attribution"><a href="https://doi.org/10.1051/0004-6361/201832763">Cropper et al. (2018)</a></p>
-                  <p class="fragment" data-fragment-index=8>&#10142; Not all stellar types suitable for measuring RV.</p>
+                  <p class="fragment">&#10142; Ca II triplet of absorption lines critical to determining RV.</p>
                 </div>
               </div>
             </div>
+          </section>
+
+          <section>
+            <h4>Fundamental limitations on RV spectroscopy</h4>
+            <div class="multicol">
+              <div>
+                <p class="align-left">Width of spectroscopic lines (Lorentz profile):</p>
+                <p>
+                  $$
+                  \varphi \left( \nu \right)
+                  = \frac{
+                    \Gamma / 4\pi^2
+                  }{
+                    \left(\nu-\nu_0\right)^2 + \left(\Gamma/4\pi\right)^2
+                  } \, ,
+                  $$
+                </p>
+                <p class="align-left">where</p>
+                <p>
+                  $$
+                  \Gamma \sim \left( \mathrm{lifetime\ of\ atomic\ energy\ levels} \right)^{-1} \, , \\
+                  \nu_0 = \mathrm{natural\ frequency\ of\ transition} \, .
+                  $$
+                </p>
+                <img data-src="../revealjs/media/gaia/lorentz_profile.jpg"></img>
+              </div>
+              <div class="fragment">
+                <p>Rotational broadening</p>
+                <img data-src="../revealjs/media/gaia/rotational_broadening_sm.jpg"></img>
+                <p>Fast-rotating (above) vs. slowly rotating star (below). Both are 12000&nbsp;K stars.</p>
+                <p class="fragment">Similar effect caused by thermal motions in stellar atmosphere.</p>
+              </div>
+            </div>
+            <p class="attribution">LeBlanc, "An Introduction to Stellar Astrophysics," 2010, p. 129.</p>
+          </section>
+
+          <section>
+            <h4>Difficulties for Gaia's RV spectroscopy</h4>
+            <div class="multicol">
+              <div>
+                <p>Slitless spectroscopy</p>
+                <img data-src="../revealjs/media/gaia/jwst_slitless_spectrum.jpg"></img>
+                <p class="attribution"><a href="https://jwst-docs.stsci.edu/jwst-near-infrared-camera/nircam-observing-modes/nircam-wide-field-slitless-spectroscopy">Simulation of JWST NIRCam slitless spectroscopy</a></p>
+                <p class="fragment">Stellar spectra can overlap!</p>
+                <div class="fragment">
+                  <p class="align-left">Mitigations:</p>
+                  <ul>
+                    <li class="fragment">Scan the sky in different directions.</li>
+                    <li class="fragment">Only look at narrow range of wavelengths.</li>
+                  </ul>
+                  <p class="fragment">&rArr; Motivates choice of narrow wavelength range with several absorption lines (Ca II triplet), and medium (not high) dispersion.</p>
+                </div>
+              </div>
+              <div class="fragment">
+                <p>Different stellar types</p>
+                <img data-src="../revealjs/media/gaia/gaia_rvs_multiple_spectra.png" class="limit-width"></img>
+                <p class="attribution"><a href="https://doi.org/10.1051/0004-6361/201832763">Cropper et al. (2018)</a></p>
+                <p class="fragment">&#10142; Not all stellar types suitable for measuring RV.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Results from Gaia</h3>
+          </section>
+
+          <section data-background="../revealjs/media/gaia/Gaia_EDR3_nsrc_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top>
+            <h4>Source density across the sky</h4>
+            <p class="attribution"><a href="https://sci.esa.int/s/8D04j58">ESA/Gaia/DPAC; A. Moitinho and M. Barros</a></p>
+            <aside class="notes">
+              <ul>
+                <li>Disk, bulge, dust lanes</li>
+                <li>LMC, SMC, bridge</li>
+                <li>M31, Triangulum</li>
+                <li>Sagittarius dwarf stream</li>
+                <li>Scanning patterns</li>
+              </ul>
+            </aside>
           </section>
 
           <section>
@@ -199,6 +373,36 @@
                 <li>Individual objects: LMC, SMC, globular clusters.</li>
               </ul>
             </aside>
+          </section>
+
+          <section>
+            <h4>Milky Way Rotation Curve</h4>
+            <div class="multicol">
+              <div class="wider">
+                <div class="r-stack">
+                  <div class="fragment fade-out" data-fragment-index=2>
+                    <img data-src="../revealjs/media/gaia/rotation_curve_mroz.jpg"></img>
+                    <p class="attribution"><a href="https://doi.org/10.3847/2041-8213/aaf73f">Mróz+ (2019)</a></p>
+                    <p>Rotation curves from Classical Cepheids (distances come from period-luminosity relation, velocities come from Gaia).</p>
+                  </div>
+                  <div class="fragment" data-fragment-index=2>
+                    <img data-src="../revealjs/media/gaia/gaia_vphi_galplane.jpg" class="limit-width"></img>
+                    <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2018A%26A...616A..11G/abstract">Gaia Collaboration, Katz+ (2018)</a></p>
+                    <p>Rotational velocity ($v_{\phi}$) in the midplane of the Milky Way.</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p>The rotation curve traces the gravitational potential of the Galaxy:</p>
+                <p>
+                  $$
+                    v_{\mathrm{circ}}^2 \left( R \right) = R \frac{\partial \Phi}{\partial R}
+                  $$
+                </p>
+                <p class="fragment" data-fragment-index=0>All matter (baryonic and dark) contributes to the potential.</p>
+                <p class="fragment" data-fragment-index=1>&rArr; Possible to trace distribution of dark matter (if you can subtract baryonic contribution to the potential).</p>
+              </div>
+            </div>
           </section>
 
           <section>
@@ -219,21 +423,34 @@
                 </div>
               </div>
             </div>
-            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2018A%26A...616A..11G/abstract">Gaia Collaboration, Katz, + (2018)</a></p>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2018A%26A...616A..11G/abstract">Gaia Collaboration, Katz+ (2018)</a></p>
           </section>
 
-          <section data-background="../revealjs/media/gaia/Gaia_EDR3_nsrc_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top>
-            <h4>Source density across the sky</h4>
-            <p class="attribution"><a href="https://sci.esa.int/s/8D04j58">ESA/Gaia/DPAC; A. Moitinho and M. Barros</a></p>
-            <aside class="notes">
-              <ul>
-                <li>Disk, bulge, dust lanes</li>
-                <li>LMC, SMC, bridge</li>
-                <li>M31, Triangulum</li>
-                <li>Sagittarius dwarf stream</li>
-                <li>Scanning patterns</li>
-              </ul>
-            </aside>
+          <section>
+            <h4>Gaia Enceladus (a.k.a. "The Sausage")</h4>
+            <div class="multicol">
+              <div>
+                <div class="r-stack">
+                  <img data-src="../revealjs/media/gaia/gaia_sausage_1z3_fehm1.png" class="invert-colors full-width fragment fade-out" data-fragment-index=3></img>
+                  <img data-src="../revealjs/media/gaia/gaia_sausage_3z5_fehm1.png" class="invert-colors full-width fragment current-visible" data-fragment-index=3></img>
+                  <img data-src="../revealjs/media/gaia/gaia_sausage_1z3_fehm2.png" class="invert-colors full-width fragment" data-fragment-index=4></img>
+                </div>
+                <p class="attribution"><a href="https://arxiv.org/abs/1802.03414">Belokurov+ (2018)</a></p>
+              </div>
+              <div>
+                <p>Plot $v_{\theta}$ vs. $v_r$ for metal-rich stars above the Milky Way midplane.</p>
+                <div class="fragment" data-fragment-index=0>
+                  <p class="align-left">Two populations:</p>
+                  <ol>
+                    <li class="fragment" data-fragment-index=1>Cold, rotating population: $v_r \sim 0, \ v_{\theta} \sim 200 \, \mathrm{km/s}$ &rarr; "thick disk"</li>
+                    <li class="fragment" data-fragment-index=2>Population of stars on highly radial orbits: $v_{\theta} \sim 0$ &rarr; "The Sausage"</li>
+                  </ol>
+                  <p class="fragment" data-fragment-index=3>The Sausage dominates higher above the MW midplane.</p>
+                  <p class="fragment" data-fragment-index=4>The Sausage disappears at lower metallicity.</p>
+                  <p class="fragment" data-fragment-index=5>Merger 8-11 Gyr ago.</p>
+                </div>
+              </div>
+            </div>
           </section>
 
         </section>
