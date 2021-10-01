@@ -31,11 +31,19 @@
     }
 
     /* Image width */
+    img.half-width, video.half-width {
+      max-width: 50%;
+    }
     img.limit-width, video.limit-width {
       max-width: 70%;
     }
     img.full-width {
       width: 100%;
+    }
+
+    /* Item placement in r-stack environment */
+    .reveal .r-stack .align-top {
+      margin: initial;
     }
 
     /* Basic slide layouts */
@@ -64,6 +72,11 @@
     /* Text alignment */
     .align-left {
       text-align: left;
+    }
+
+    /* Text size */
+    .shrink-text {
+      font-size: 67%;
     }
   </style>
 
@@ -101,6 +114,186 @@
         <section>
           <section>
             <h2>Sloan Digital Sky Survey (SDSS)</h2>
+            <h4>The first modern survey of a large area of the sky.</h4>
+          </section>
+
+          <section>
+            <div class="multicol">
+              <div>
+                <h2>The site</h2>
+                <img data-src="../revealjs/media/sdss/apache_point_on_globe.jpg" class="limit-width"></img>
+                <p class="attribution"><a href="https://earth.google.com/web/search/apache+point">Google Earth</a></p>
+              </div>
+              <div>
+                <h2>The telescope</h2>
+                <p>2.5&nbsp; with a 3&deg; field of view</p>
+                <img data-src="../revealjs/media/sdss/SDSS_telescope_new.jpg" class="limit-width"></img>
+                <p class="attribution"><a href="https://www.sdss.org/instruments/">sdss.org</a></p>
+              </div>
+            </div>
+            <h4 class="fragment">Two goals:</h4>
+            <ol>
+              <li class="fragment">Map &frac14; of the sky, centered on the Northern Galactic Pole.</li>
+              <li class="fragment">Take spectra and measure of the redshift of ~1&nbsp;million nearby galaxies.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h3>The SDSS camera</h3>
+            <div class="multicol">
+              <div>
+                <div class="r-stack">
+                  <div class="fragment current-visible align-top" data-fragment-index=1>
+                    <p>Transmission in each band</p>
+                    <img data-src="../revealjs/media/sdss/sdss_transmission.svg"></img>
+                    <p class="attribution"><a href="http://svo2.cab.inta-csic.es/theory/fps/index.php?mode=browse&gname=SLOAN&asttype=">SVO Filter Profile Service</a></p>
+                  </div>
+                  <div class="fragment" data-fragment-index=2>
+                    <img data-src="../revealjs/media/sdss/camassy2.png" class="r-stretch"></img>
+                    <p class="attribution"><a href="https://www.sdss.org/dr12/imaging/imaging_basics/">sdss.org</a></p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="fragment" data-fragment-index=1>5 filters (<i>u', g', r', i', z'</i>), from near-UV to near-IR.</p>
+                <p class="fragment" data-fragment-index=2>6 "camcols," each with 5 CCDs (one per filter).</p>
+                <div class="space-top">
+                  <h4 class="fragment" data-fragment-index=3>"Drift-scanning"</h4>
+                  <ul>
+                    <li class="fragment" data-fragment-index=4>Shutter remains open as sky drifts across camera (downwards in diagram at left).</li>
+                    <li class="fragment" data-fragment-index=5>Charges are shifted and CCDs are read out in sync with the sky.</li>
+                    <li class="fragment shrink-text" data-fragment-index=6>(for detailed reasons, the stipes are great circles, instead of curves of constant declination).</li>
+                </div>
+                <p class="fragment space-top" data-fragment-index=7>Each CCD is 2048&#10761;2048 pixels, with 0.396&nbsp;arcsec/pixel.</p>
+                <p class="fragment" data-fragment-index=8>&rArr; Integration time per source = <span class="fragment current-visible" data-fragment-index=8>?</span><span class="fragment" data-fragment-index=9>54&nbsp;s</span></p>
+                <p class="fragment space-top shrink-text" data-fragment-index=9>
+                  $$
+                  \Delta \theta = 
+                    \left( 2048\,\mathrm{pixels} \right)
+                    \left( 0.396\,\mathrm{arcsec/pixel} \right)
+                    =
+                    811\,\mathrm{arcsec}
+                    \, .
+                  \\
+                  \dot{\theta} = 
+                    \left( 360\,\mathrm{deg/day} \right)
+                    \frac{
+                      \left( 3600\,\mathrm{arcsec/deg} \right)
+                    }{
+                      \left( 24\,\mathrm{h/day} \right)
+                      \left( 3600\,\mathrm{s/h} \right)
+                    }
+                    = 15\,\mathrm{arcsec/s}
+                    \, . \\
+                  t =
+                    \Delta \theta / \dot{\theta} = 54\,\mathrm{s}
+                    \, .
+                  $$
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>The SDSS camera</h4>
+            <img data-src="../revealjs/media/sdss/sdss_camera_photo.jpg" class="r-stretch"></img>
+            <p class="attribution"><a href="https://www.si.edu/object/camera-imaging-digital-sloan-digital-sky-survey-ccd-array%3Anasm_A20130052000">National Air and Space Museum</a></p>
+          </section>
+
+          <section>
+            <h4>One "run"</h4>
+            <img data-src="../revealjs/media/sdss/run756.jpg" class="r-stretch"></img>
+            <p class="attribution"><a href="https://www.sdss.org/dr12/imaging/imaging_basics/">sdss.org</a></p>
+          </section>
+
+          <section>
+            <h4>SDSS imaging sky coverage</h4>
+            <img data-src="../revealjs/media/sdss/sdss_imaging_coverage.jpg" class="r-stretch"></img>
+            <p class="attribution">Equatorial coordinates, <a href="https://www.sdss.org/dr12/algorithms/resolve/">sdss.org</a></p>
+            <p class="fragment">Great-circle "stripes" (of nearly constant declination) generated by drift-scanning.</p>
+            <p class="fragment">Imaging of two regions, avoiding the plane of the Milky Way.</p>
+            <p class="fragment">Perpendicular stripes to link the two regions and improve the calibration.</p>
+            <p class="fragment">Equatorial stripe (82) imaged more frequently.</p>
+          </section>
+
+          <section>
+            <h3>Calibration</h3>
+            <p class="fragment">CCDs count photons (photoelecrons, actually), but we want to know a star's flux (e.g., at top of Earth's atmosphere).</p>
+            <h4 class="fragment space-top">Two common ways of calibrating a survey:</h4>
+            <ol>
+              <li class="fragment">Calibrate to a list of "standard stars" of known flux (e.g., HST CALSPEC stars).</li>
+              <li class="fragment">Make sure that repeat observations of the same star give the same flux: relative calibration.</li>
+            </ol>
+          </section>
+
+          <section>
+            <h4>"Ubercalibration"</h4>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...674.1217P/abstract">Padmanabhan+ (2008)</a></p>
+            <div class="multicol">
+              <div class="fragment">
+                <p>Number of observations across SDSS footprint</p>
+                <img data-src="../revealjs/media/sdss/Padmanabhan_Fig2.png"></img>
+              </div>
+              <div>
+                <p class="fragment">Effects to model (for each band):</p>
+                <ul>
+                  <li class="fragment">Atmospheric extinction: $k \left( t \right) x$, where $x$ is airmass.</li>
+                  <li class="fragment">Overall optical response (optics + filter + CCD): $a \left( t \right)$. Different every night.</li>
+                  <li class="fragment">CCD flat field: $f_j$, where $j$ is the pixel column.</li>
+                </ul>
+              </div>
+            </div>
+            <p class="fragment">
+              For one observation of one star in one band, 
+              $$
+              m_{\mathrm{calibrated}} =
+                m_{\mathrm{raw}}
+                + a
+                + \left[ k_0 + \left( \frac{\mathrm{d}k}{\mathrm{d}t} \right) \left( t - t_0 \right) \right] x
+                + f_j
+                \, .
+              $$
+            </p>
+            <p class="fragment">All these parameters can be constrained:</p>
+            <ul>
+              <li class="fragment">We observe many different stars in each pixel column. &rarr; $f_j$.</li>
+              <li class="fragment">We observe fields at many different airmasses each night. &rarr; $k \left( t \right)$.</li>
+              <li class="fragment">We observe the same star on different nights. &rarr; $a \left( t \right)$</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>"Ubercalibration"</h4>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...674.1217P/abstract">Padmanabhan+ (2008)</a></p>
+            <img data-src="../revealjs/media/sdss/Padmanabhan_Fig5.png" class="half-width"></img>
+            <p>Calibration errors, based on simulated data: &pm;0.02&nbsp;mag.</p>
+          </section>
+
+          <section>
+            <h3>Results</h3>
+          </section>
+
+          <section>
+            <h4>Milky Way Tomography</h4>
+          </section>
+
+          <section>
+            <h4>The "Field of Streams"</h4>
+            <div class="multicol">
+              <div>
+                <img data-src="../revealjs/media/sdss/fos_dr6_marked.jpg"></img>
+                <p class="attribution"><a href="https://classic.sdss.org/includes/sideimages/fos_dr6_marked.html">V. Belokurov, SDSS</a></p>
+                <p class="shrink-text">(intensity = density of stars, color = estimated distance of stars)</p>
+                <p class="fragment" data-fragment-index=1>"Sagittarius Stream" &amp; "Monoceros Ring" discovered earlier. "Orphan Stream" discovered by SDSS.</p>
+                <p class="fragment" data-fragment-index=3>The Orphan Stream has no known progenitor.</p>
+                <p class="fragment" data-fragment-index=4>See Belokurov+ (<a href="https://ui.adsabs.harvard.edu/abs/2006ApJ...642L.137B/abstract">2006</a>, <a href="https://ui.adsabs.harvard.edu/abs/2007ApJ...658..337B/abstract">2007</a>)</p>
+              </div>
+              <div class="fragment" data-fragment-index=2>
+                <img data-src="../revealjs/media/sdss/stream_illustration.jpg" class="limit-width"></img>
+                <p class="attribution"><a href="https://www.spitzer.caltech.edu/image/sig07-008-rings-around-the-galaxy-annotated">NASA/JPL-Caltech/R. Hurt (SSC/Caltech)</a></p>
+                <p>Illustration of a stream.</p>
+              </div>
+            </div>
           </section>
         </section>
 
@@ -149,7 +342,7 @@
         <section>
           <section>
             <h2>SDSS-V</h2>
-            <img data-src="../revealjs/media/sdss-v/SDSSV_banner.jpg" class=""></img>
+            <img data-src="../revealjs/media/sdss-v/SDSSV_banner.jpg"></img>
             <h4>Pioneering Panoptic Spectroscopy</h4>
             <p class="fragment">The next generation of Milky Way (+ local volume) spectroscopy</p>
           </section>
