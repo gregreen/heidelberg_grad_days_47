@@ -58,7 +58,7 @@
 
     /* Margins */
     .space-top {
-      margin-top: calc(3 * var(--r-block-margin));
+      margin-top: calc(3 * var(--r-block-margin)) !important;
     }
 
     /* Text alignment */
@@ -242,8 +242,11 @@
             <p class="attribution"><a href="https://sci.esa.int/s/ABq2J28">ESA</a></p>
           </section>
 
+        </section>
+
+        <section>
           <section>
-            <h4>Gaia: The Milky Way in 6D</h4>
+            <h3>Gaia: The Milky Way in 6D</h3>
             <video data-autoplay loop data-src="../revealjs/media/gaia/Gaia_EDR3_StarTrails_768x432_lq.mp4"></video>
             <p class="attribution"><a href="https://sci.esa.int/web/gaia/-/gaia-s-stellar-motion-for-the-next-1.6-million-years">ESA/Gaia/DPAC; A. Brown, S. Jordan, T. Roegiers, X. Luria, E. Masana, T. Prusti and A. Moitinho</a></p>
           </section>
@@ -373,6 +376,42 @@
           </section>
 
           <section>
+            <div class="multicol">
+              <div>
+                <div class="r-stack">
+                  <div class="fragment fade-out" data-fragment-index=2>
+                    <img data-src="../revealjs/media/gaia/ESA_Gaia_DR2_HRD_Gaia.jpg"></img>
+                    <p class="attribution"><a href="https://sci.esa.int/s/wKdy4dW">ESA/Gaia/DPAC</a></p>
+                  </div>
+                  <div class="fragment" data-fragment-index=2>
+                    <img data-src="../revealjs/media/gaia/WD_gaia_lightannotation.jpg"></img>
+                    <p class="attribution"><a href="https://doi.org/10.1051/0004-6361/201832843">Gaia Collaboartion, Babusiaux+ (2018)</a></p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4>Hertzsprung-Russel Diagram</h4>
+                <p class="space-top">With parallax, we can calculate <i>absolute magnitude</i>:</p>
+                <p class="fragment" data-fragment-index=0>
+                  $$
+                  M = m + \underbrace{
+                    5 \log_{10} \left( \frac{\varpi}{1\,\mathrm{mas}} \right) - 10
+                  }_{
+                    \equiv \mu
+                  }
+                  \, , \\
+                  \mathrm{where} \\
+                  m = \mathrm{apparent\ magnitude} \, , \\
+                  \mu = \mathrm{distance\ modulus} \, .
+                  $$
+                </p>
+                <p class="fragment" data-fragment-index=1>Can study different stellar populations in detail.</p>
+                <p class="fragment" data-fragment-index=2>&rarr; E.g., unprecedented detail for the white dwarf cooling track.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
             <h4>Average radial velocity over the sky</h4>
             <img data-src="../revealjs/media/gaia/Gaia_DR2_Average_Rad_Vel.jpg"></img>
             <p class="attribution"><a href="https://sci.esa.int/s/A6ymNQ8">ESA/Gaia/DPAC</a></p>
@@ -460,6 +499,25 @@
                 </div>
               </div>
             </div>
+          </section>
+
+          <section>
+            <h4>The "Antoja Spiral"</h4>
+            <div class="multicol">
+              <div>
+                <div class="r-stack">
+                  <img data-src="../revealjs/media/gaia/antoja_spiral_density.jpg" class="fragment current-visible" data-fragment-index=3></img>
+                  <img data-src="../revealjs/media/gaia/antoja_spiral_vphi.jpg" class="fragment" data-fragment-index=4></img>
+                </div>
+              </div>
+              <div>
+                <p>Stars near the midplane of the Galaxy feel a <i>nearly</i> linear vertical restoring force.</p>
+                <p class="fragment" data-fragment-index=1>&rArr; $\left( z, \, v_z \right)$ dynamics is similar to an anharmonic oscillator.</p>
+                <p class="fragment" data-fragment-index=2>&rArr; Perturbations of the Milky Way disk should cause phase spirals in $\left( z, \, v_z \right)$-space.</p>
+                <p class="fragment" data-fragment-index=5>Perturbation by a close passage of the Sagittarius dwarf galaxy ~500&nbsp;Myr ago?</p>
+              </div>
+            </div>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2018Natur.561..360A/abstract">Antoja+ (2018)</p>
           </section>
 
         </section>
