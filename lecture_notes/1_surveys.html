@@ -20,6 +20,24 @@
       margin: calc(0.5 * var(--r-block-margin)) 0;
     }
 
+    /* Compact */
+    .compact * {
+      margin: calc(0.3 * var(--r-block-margin)) 0 !important;
+    }
+
+    /* Footer (bottom of slide)
+       .footer only works if the slide is .full-height
+     */
+    section.full-height {
+      height: 100%;
+    }
+    div.footer {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      text-align: center;
+    }
+
     /* Slide-specific vertical centering override */
     .reveal .slides section[data-vertical-align-top]{
       top: 0 !important;
@@ -274,16 +292,111 @@
           </section>
 
           <section>
-            <h4>Milky Way Tomography</h4>
+            <h4>Milky Way Tomography I. Stellar Density</h4>
+            <div class="multicol compact">
+              <div>
+                <p>Stellar locus in color-color space</p>
+                <img data-src="../revealjs/media/sdss/tomography_i_stellar_locus_cc.svg" class="invert-colors"></img>
+              </div>
+              <div>
+                <p>Stellar locus in color-absolute-magnitude space</p>
+                <div class="r-stack">
+                  <div class="fragment fade-out" data-fragment-index=2>
+                    <img data-src="../revealjs/media/sdss/tomography_i_stellar_locus_camd.svg" class="invert-colors"></img>
+                    <p class="fragment" data-fragment-index=1>&rarr; Estimate stellar distances using colors.</p>
+                  </div>
+                  <div class="fragment" data-fragment-index=2>
+                    <div class="multicol">
+                      <div class="wider">
+                        <img data-src="../revealjs/media/gaia/ESA_Gaia_DR2_HRD.jpg" class=""></img>
+                        <p class="attribution"><a href="https://sci.esa.int/s/wKdy4dW">ESA/Gaia/DPAC</a></p>
+                      </div>
+                      <div>
+                        <p>&rarr; Assumes all stars are on main sequence.</p>
+                        <p class="fragment space-top" data-fragment-index=3>&rarr; Not a terrible assumption for this dataset.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...673..864J/abstract">Juri&cacute;+ (2008)</a></p>
+          </section>
+
+          <section>
+            <h4>Milky Way Tomography I. Stellar Density</h4>
+            <p>Density in Galactic cylindrical coordinates, $\left( R, z \right)$, in different color bins</p>
+            <img data-src="../revealjs/media/sdss/tomography_i_density_color_bins.png" class="r-stretch"></img>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...673..864J/abstract">Juri&cacute;+ (2008)</a></p>
+          </section>
+
+          <section>
+            <h4>Milky Way Tomography I. Stellar Density</h4>
+            <div class="multicol space-top">
+              <div>
+                <img data-src="../revealjs/media/sdss/tomography_i_density_model.svg" class="invert-colors"></img>
+              </div>
+              <div>
+                <h4>Three-component density model</h4>
+                <p class="fragment">Thin &amp; thick disks:
+                  $$\rho \left(R,z\right) \propto \exp\left(-\frac{R}{L}-\frac{z}{H}\right)$$
+                  $L$ = scale length, $H$ = scale height.
+                </p>
+                <p class="fragment space-top">Oblate halo:
+                  $$\rho \left(R,z\right) \propto \left[R^2 + \left(\frac{z}{q_H}\right)^2\right]^{-n_H}$$
+                  $q_H$ controls oblateness, $n_H$ = power-law exponent.
+                </p>
+              </div>
+            </div>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...673..864J/abstract">Juri&cacute;+ (2008)</a></p>
+          </section>
+
+          <section>
+            <h4>Milky Way Tomography II. Stellar Metallicity</h4>
+            <div class="multicol space-top">
+              <div>
+                <img data-src="../revealjs/media/sdss/tomography_ii_feh_cc.png"></img>
+              </div>
+              <div class="fragment">
+                <p>Ultraviolet flux is particularly affected by metal absorption lines in stellar atmosphere.</p>
+                <p class="fragment">Use $u-g$ color to estimate metallicity.</p>
+                <p class="fragment">&rarr; Accurate to ~0.2&nbsp;dex in $\left[\mathrm{Fe}/\mathrm{H}\right]$.</p>
+              </div>
+            </div>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...684..287I/abstract">Ivezi&cacute;+ (2008)</a></p>
+          </section>
+
+          <section>
+            <h4>Milky Way Tomography II. Stellar Metallicity</h4>
+            <div class="multicol space-top">
+              <div>
+                <img data-src="../revealjs/media/sdss/tomography_ii_feh_Rz.png"></img>
+                <p class="attribution"><a href="http://faculty.washington.edu/ivezic/r_milkyway.html">Ivezi&cacute;, &#381;</a></p>
+              </div>
+              <div class="fragment">
+                <img data-src="../revealjs/media/sdss/tomography_ii_feh_z.jpg" class="half-width"></img>
+                <p>Separate disk and halo populations seen in metallicity-position space.</p>
+              </div>
+            </div>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...684..287I/abstract">Ivezi&cacute;+ (2008)</a></p>
           </section>
 
           <section>
             <h4>The "Field of Streams"</h4>
             <div class="multicol">
               <div>
-                <img data-src="../revealjs/media/sdss/fos_dr6_marked.jpg"></img>
-                <p class="attribution"><a href="https://classic.sdss.org/includes/sideimages/fos_dr6_marked.html">V. Belokurov, SDSS</a></p>
-                <p class="shrink-text">(intensity = density of stars, color = estimated distance of stars)</p>
+                <div class="r-stack">
+                  <div class="fragment fade-out" data-fragment-index=5>
+                    <img data-src="../revealjs/media/sdss/fos_dr6_marked.jpg"></img>
+                    <p class="attribution"><a href="https://classic.sdss.org/includes/sideimages/fos_dr6_marked.html">V. Belokurov, SDSS</a></p>
+                    <p class="shrink-text">(intensity = density of stars, color = estimated distance of stars)</p>
+                  </div>
+                  <div class="fragment" data-fragment-index=5>
+                    <img data-src="../revealjs/media/sdss/gd1_discovery.jpg"></img>
+                    <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2006ApJ...643L..17G/abstract">Grillmair & Dionatos (2006)</a></p>
+                    <p class="shrink-text">GD-1: a cold stream spanning 63&deg; on the sky.</p>
+                  </div>
+                </div>
                 <p class="fragment" data-fragment-index=1>"Sagittarius Stream" &amp; "Monoceros Ring" discovered earlier. "Orphan Stream" discovered by SDSS.</p>
                 <p class="fragment" data-fragment-index=3>The Orphan Stream has no known progenitor.</p>
                 <p class="fragment" data-fragment-index=4>See Belokurov+ (<a href="https://ui.adsabs.harvard.edu/abs/2006ApJ...642L.137B/abstract">2006</a>, <a href="https://ui.adsabs.harvard.edu/abs/2007ApJ...658..337B/abstract">2007</a>)</p>
@@ -293,6 +406,18 @@
                 <p class="attribution"><a href="https://www.spitzer.caltech.edu/image/sig07-008-rings-around-the-galaxy-annotated">NASA/JPL-Caltech/R. Hurt (SSC/Caltech)</a></p>
                 <p>Illustration of a stream.</p>
               </div>
+            </div>
+          </section>
+
+          <section data-background-image="../revealjs/media/sdss/fos_bonaca_N.jpg" data-background-size="contain" class="full-height">
+            <div class="footer">
+              <p class="attribution"><a href="http://www.astro.yale.edu/abonaca/research/halo.html">Bonaca, A.</a></p>
+            </div>
+          </section>
+
+          <section data-background-image="../revealjs/media/sdss/fos_bonaca_S.jpg" data-background-size="contain" class="full-height">
+            <div class="footer">
+              <p class="attribution"><a href="http://www.astro.yale.edu/abonaca/research/halo.html">Bonaca, A.</a></p>
             </div>
           </section>
         </section>
@@ -573,7 +698,7 @@
               <div>
                 <div class="r-stack">
                   <div class="fragment fade-out" data-fragment-index=2>
-                    <img data-src="../revealjs/media/gaia/ESA_Gaia_DR2_HRD_Gaia.jpg"></img>
+                    <img data-src="../revealjs/media/gaia/ESA_Gaia_DR2_HRD.jpg"></img>
                     <p class="attribution"><a href="https://sci.esa.int/s/wKdy4dW">ESA/Gaia/DPAC</a></p>
                   </div>
                   <div class="fragment" data-fragment-index=2>
