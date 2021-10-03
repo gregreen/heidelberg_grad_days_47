@@ -30,6 +30,6 @@ Lecture Notes / Presentations:
 Notebooks:
 ----------
 
-There are various [Jupyter notebooks](https://jupyter.org/) that students can use to explore some of the topics covered in this course.
+There are various [Jupyter notebooks](https://jupyter.org/) that students can use to explore some of the topics covered in this course. The notebooks can be found [here](https://github.com/gregreen/heidelberg_grad_days_47/tree/master/notebooks).
 
 If you don't have Jupyter installed on your computer, these notebooks can be run in your browser directly, on [Google Colab](https://colab.research.google.com/) (requires a Google account) or [JupyterLab](https://jupyter.org/try) (click "Try JupyterLab" and then upload the notebooks).
