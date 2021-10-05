@@ -25,6 +25,7 @@ Lecture Notes / Presentations:
 
 * [Lecture 1](lecture_notes/1_surveys.html): The Milky Way and Large Surveys.
 * [Lectures 2 & 3](lecture_notes/2_Probability_lq.pdf): Probability theory and Bayesian inference.
+* [Lecture 4](lecture_notes/4_Distance_from_Parallax_lq.pdf): Inferring distance from noisy parallax measurements.
 
 
 Notebooks:
