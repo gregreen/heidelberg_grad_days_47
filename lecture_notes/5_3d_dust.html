@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>3D Dust Mapping</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../revealjs/dist/reveal.css">
+    <link rel="stylesheet" href="../revealjs/dist/theme/night.css" id="theme">
+  </head>
+
+  <style>
+    /* Stroke text */
+    .stroke-text-dark {
+      text-stroke: 1px black;
+      -webkit-text-stroke: 1px black;
+      paint-order: stroke fill;
+    }
+    .stroke-text-light {
+      text-stroke: 1px white rgba(255,255,255,0.3);
+      -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+      paint-order: stroke fill;
+    }
+    
+    /* Attribution text */
+    p.attribution {
+      font-size: 60%;
+      color: #aaa;
+      margin: calc(0.5 * var(--r-block-margin)) 0;
+    }
+    p.attribution a {
+      color: #ddf;
+    }
+
+    /* Compact */
+    .compact * {
+      margin: calc(0.3 * var(--r-block-margin)) 0 !important;
+    }
+
+    /* Footer (bottom of slide)
+       .footer only works if the slide is .full-height
+     */
+    section.full-height {
+      height: 100%;
+    }
+    div.footer {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Slide-specific vertical centering override */
+    .reveal .slides section[data-vertical-align-top]{
+      top: 0 !important;
+    }
+
+    /* Invert colors - useful for adapting graphics for dark slides. */
+    img.invert-colors, video.invert-colors {
+      filter: invert(1);
+    }
+
+    /* Image width */
+    img.half-width, video.half-width {
+      max-width: 50%;
+    }
+    img.limit-width, video.limit-width {
+      max-width: 70%;
+    }
+    img.full-width {
+      width: 100%;
+    }
+
+    /* Item placement in r-stack environment */
+    .reveal .r-stack .align-top {
+      margin: initial;
+    }
+
+    /* Basic slide layouts */
+    .multicol {
+      display: flex;
+      flex-direction: row;
+    }
+    .multicol.vcenter {
+      align-items: center;
+    }
+    .multicol div {
+      flex-basis: 50%;
+    }
+    .multicol div.wide {
+      flex-basis: 67%;
+    }
+    .multicol div.wider {
+      flex-basis: 100%;
+    }
+
+    /* Margins */
+    .space-top {
+      margin-top: calc(3 * var(--r-block-margin)) !important;
+    }
+
+    /* Text alignment */
+    .align-left {
+      text-align: left;
+    }
+
+    /* Text size */
+    .shrink-text {
+      font-size: 67%;
+    }
+  </style>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+
+        <section data-background-video="https://dust-media.s3.amazonaws.com/videos/3D/bayestar19/grand_tour_stars_corr.mp4" data-background-video-loop="true">
+          <h2>Mapping Interstellar Dust in 3D</h2>
+          <h4>Heidelberg Physics Grad Days, 4-8 October 2021</h4>
+          <h4>Gregory Green</h4>
+        </section>
+
+        <section>
+          <section>
+            <h3>Interstellar dust</h3>
+            <div class="multicol">
+              <div>
+                <img data-src="../revealjs/media/dust/interplanetary-grain.png" class=""></img>
+                <p class="attribution">An <em>interplanetary</em> grain, from <a href="https://commons.wikimedia.org/wiki/File:Porous_chondriteIDP.jpg">E. Jessberger (2005)</a>.</p>
+                <ul class="space-top">
+                  <li class="fragment">&lsim; 1&mu;m silicate and carbonate grains.</li>
+                  <li class="fragment">Make up 1% of the mass of the ISM.</li>
+                  <li class="fragment">Absorb and scatter light: "extinction."</li>
+                </ul>
+              </div>
+              <div class="wide fragment">
+                <img data-src="../revealjs/media/dust/draine_extcurves.svg" class="invert-colors"></img>
+                <p class="attribution">Based on the mean Milky Way extinction curve of <a href="https://ui.adsabs.harvard.edu/abs/2001ApJ...548..296W/abstract">Weingartner &amp; Draine (2001)</a>.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="compact">
+            <h3>Extinction</h3>
+            <img data-src="../revealjs/media/dust/hrd_with_without_extinction.png" class="r-stretch"></img>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2021ApJ...907...57G/abstract">Green+ (2021)</a></p>
+            <p class="fragment space-top">Two effects:</p>
+            <ul>
+              <li class="fragment">"Extinction": sources appear fainter.</li>
+              <li class="fragment">"Reddening": sources appear redder (because more extinction at short wavelengths).</li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>Reasons to ...</h4>
+            <div class="multicol">
+              <div>
+                <p>... hate dust:</p>
+                <ul>
+                  <li class="fragment">It reddens and extinguishes galaxies, SNe Ia, stars, ...</li>
+                  <li class="fragment">It complicates selection functions: galaxy surveys, stellar dynamics in the MW, ...</li>
+                  <li class="fragment">It emits in the far-infrared: CMB, ...</li>
+                </ul>
+              </div>
+              <div>
+                <p>... love dust:</p>
+                <ul>
+                  <li class="fragment">It traces the interstellar medium, star-forming regions, chemical enrichment.</li>
+                  <li class="fragment">Many open questions: dust composition, variation in the wavelength-extinction relation.</li>
+                </ul>
+              </div>
+            </div>
+            <p class="space-top fragment">&rArr; Either way, mapping dust is useful.</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>How to map dust?</h2>
+          </section>
+
+          <section data-background-image="../revealjs/media/dust/sfd-stretched.jpg">
+            <h3 class="stroke-text-dark">Using far-infrared emission</h3>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/1998ApJ...500..525S/abstract">Schlegel, Finkbeiner &amp; Davis (1998)</a></p>
+          </section>
+
+          <section data-transition="slide-in none-out">
+            <h3>Modified black-body model</h3>
+            <div class="multicol">
+              <div>
+                <img data-src="../revealjs/media/dust/mbb_example.svg" class="invert-colors">
+              </div>
+              <div>
+                <p class="fragment" data-fragment-index=1>
+                  $$
+                    I_{\nu} \left( \nu , T , \beta \right)
+                      = \overbrace{\sigma}^{\mathrm{column}}
+                        \underbrace{\kappa \left( \nu , \beta \right)}_{\mathrm{low-}\nu\ \mathrm{cutoff}}
+                        \overbrace{B_{\nu} \left( \nu , T \right)}^{\mathrm{blackbody}}
+                      ,\ \ 
+                      {\scriptstyle \mathrm{where}\ \kappa \ \propto \ v^{\beta}}
+                      \, .
+                  $$
+                </p>
+                <div>
+                  <div class="r-stack">
+                    <div class="fragment fade-out" data-fragment-index=5>
+                      <h4 class="fragment" data-fragment-index=2>Algorithm</h4>
+                      <ol>
+                        <li class="fragment" data-fragment-index=2>Map $I_{\nu}$ at set of frequencies over the sky.</li>
+                        <li class="fragment" data-fragment-index=3>Infer maps of $T$, $\beta$ and $\sigma$.</li>
+                        <li class="fragment" data-fragment-index=4>Assume optical &amp; NIR extinction proportional to $\sigma$.</li>
+                      </ol>
+                    </div>
+                    <div class="fragment" data-fragment-index=5>
+                      <h4>Limitations</h4>
+                      <ul>
+                        <li class="fragment" data-fragment-index=5>Degeneracies between $(\sigma, T, \beta)$.</li>
+                        <li class="fragment" data-fragment-index=6>Intensity is independent of distance.</li>
+                        <li class="fragment" data-fragment-index=7>Calibration: column density &rarr; extinction/reddening.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Blackbody, truncated at low frequencies / long wavelengths b/c of grain-size cutoff.</li>
+                <li>Example: Planck + IRAS 100μm band.</li>
+                <li>Calibrated using external color standards.</li>
+                <li>Calibration may depend on the dust composition and grain-size distribution!</li>
+              </ul>
+              <ul>
+                <li>Degeneracies between temperature, beta and dust column.</li>
+                <li>Can't determine distance to dust.</li>
+                <li>Calibration is not constant: dust properties vary (grain size, chemical composition).</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section data-background-image="../revealjs/media/gaia/Gaia_EDR3_flux_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top class="full-height">
+            <h3>Using stars</h3>
+            <p class="fragment">We can determine stellar distances (from parallaxes and photometry).</p>
+            <p class="fragment">Stellar photometry directly traces optical &amp; NIR extinction.</p>
+            <p class="fragment">&rarr; We can trace variation in the wavelength-extinction relation.</p>
+            <div class="footer">
+              <p class="attribution"><a href="https://sci.esa.int/s/WLy3Xp8">ESA/Gaia/DPAC; A. Moitinho</a></p>
+            </div>
+
+            <aside class="notes">
+              <ul>
+                <li>... which means we can determine distance to dust!</li>
+                <li>... not dependent on uncertain or varying calibration</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section data-background-image="../revealjs/media/gaia/Gaia_EDR3_flux_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top class="full-height">
+            <div class="stroke-text-dark">
+              <h3>Gaia</h3>
+              <div class="vh-25"></div>
+              <h4>> billion stellar parallaxes<h4>
+            </div>
+            <div class="footer">
+              <p class="attribution"><a href="https://sci.esa.int/s/WLy3Xp8">ESA/Gaia/DPAC; A. Moitinho</a></p>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Also provides photometry, which we do not use here.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section data-background="../revealjs/media/ps1/Pan-STARRS_skySurvey_small.jpg" data-background-size="contain" data-vertical-align-top class="full-height">
+            <h3>Pan-STARRS 1 (PS1)</h3>
+            <p>5 optical-NIR bands: g, r, i, z, y</p>
+            <p>Imaged the sky North of declination -30° &rarr; ¾ of sky</p>
+            <p>~billion stars with high-quality photometry</p>
+            <div class="footer">
+              <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2016arXiv161205560C/abstract">Chambers+ (2016)</a></p>
+            </div>
+          </section>
+
+          <section data-background="../revealjs/media/2mass/2mass-allsky.jpg" data-background-size="cover" data-vertical-align-top class="full-height">
+            <div class="stroke-text-dark">
+            <h3>Two Micron All-Sky Survey (2MASS)</h3>
+            </div>
+            <p>3 NIR bands: J, H, K<sub>s</sub></p>
+            <p>All-sky coverage</p>
+            <p>~300 million high-quality stars</p>
+            <div class="footer">
+              <p class="attribution"><a href="https://old.ipac.caltech.edu/2mass/gallery/showcase/">2MASS / J. Carpenter, T.H. Jarrett, &amp; R. Hurt</a></p>
+            </div>
+          </section>
+
+          <section>
+            <h3>Inferring stellar parameters</h4>
+            <h4>(distance, reddening, stellar type)</h3>
+            <aside class="notes">
+              <ul>
+                <li>In order to estimate distance & reddening, you also need to estimate type, as we will see.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h4>Stellar distance & extinction: "photometric parallax"</h4>
+            <div class="multicol">
+              <div>
+                <img data-src="../revealjs/media/bayestar/color_color_example.png" class="invert-colors">
+                <p class="attribution">Adapted from <a href="https://ui.adsabs.harvard.edu/abs/2012ApJ...757..166B">Berry+ (2012)</a></p>
+              </div>
+              <div>
+                <ul>
+                  <li class="fragment">Star is observed at point 1 in color-color space.</li>
+                  <li class="fragment">Stars are moved along the "reddening vector" in color-color space.</li>
+                  <li class="fragment">The star could have come from points 2 or 3.</li>
+                  <li class="fragment">Each possibility implies a different absolute magnitude, and therefore distance.</li>
+                </ul>
+                <p class="fragment space-top">&rarr; More complicated than this: photometry has uncertainties, we have to apply priors, ...</p>
+              </div>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Stellar locus for stars of a particular metallicity and age.</li>
+                <li>Locus colored by luminosity.</li>
+                <li>Reddening vector.</li>
+                <li>Observe at 1: intrinsic color can be either 2 or 3.</li>
+                <li>Photometric uncertainties: don't know exact type of star.</li>
+              </ul>
+            </aside>
+          </section>
+
+          <section>
+            <h3>Forward model</h3>
+            <div class="multicol">
+              <div>
+                <img data-src="../revealjs/media/bayestar/b17_factor_graph.svg" class="invert-colors"></img>
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2018MNRAS.478..651G/abstract">Green+ (2018)</a></p>
+              </div>
+              <div>
+                <h4 class="fragment">For each star:</h4>
+                <p class="fragment">Stellar type determines absolute magnitudes: $\vec{M} ( \vec{\theta} )$.</p>
+                <p class="fragment">Universal extinction law (one type of dust): $\vec{A} = E \, \vec{R}$.</p>
+                <p class="fragment">Apparent magnitudes: $\vec{m} = \vec{M} ( \vec{\theta} ) + E \, \vec{R} + \mu$.</p>
+                <p class="fragment">Parallax: $\varpi \propto r^{-1}$.</p>
+                <p class="fragment">Priors on distribution of stars, luminosity function, etc.</p>
+                <h4 class="fragment">$\implies$ Infer $( \vec{\theta}, E, \mu )$ given $( \hat{m}, \hat{\varpi} )$.</h4>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Individual stellar posterior</h3>
+            <p class="fragment">
+              $$
+              p \left( \vec{\theta}, \mu, E \mid \hat{m}, \hat{\varpi} \right)
+              = \frac{
+                p \left( \hat{m}, \hat{\varpi} \mid \vec{\theta}, \mu, E \right)
+                p \left( \vec{\theta}, \mu, E \right)
+              }{
+                p \left( \hat{m}, \hat{\varpi} \right)
+              }
+              $$
+            </p>
+          </section>
+
+          <section>
+            <h3>Individual stellar likelihood</h3>
+            <p class="fragment">
+              $$
+                p \left( \hat{m}, \hat{\varpi} \mid \vec{\theta}, \mu, E \right)
+                =
+                p \left( \hat{m} \mid \vec{\theta}, \mu, E \right)
+                p \left( \hat{\varpi} \mid \mu \right)
+              $$
+            </p>
+          </section>
+
+          <section>
+            <h3>Individual stellar prior</h3>
+            <p class="fragment">
+              $$
+                p \left( \vec{\theta}, \mu, E \right)
+                =
+                p \left( \mu \right) p \left( \vec{\theta} \mid \mu \right) p \left( E \right)
+              $$
+            </p>
+            <p class="fragment">Prior on distance modulus should be proportional to number of stars along line of sight <em>per unit distance modulus</em>:
+            <p class="fragment">
+              $$
+              p \left( \mu \right)
+              \propto
+              \frac{
+                \mathrm{d}N
+              }{
+                \mathrm{d}\mu \mathrm{d}\Omega
+              }
+              =
+              \frac{
+                \mathrm{d}N
+              }{
+                \mathrm{d}r \mathrm{d}\Omega
+              }
+              \frac{
+                \mathrm{d}r
+              }{
+                \mathrm{d}\mu
+              } \, .
+              $$
+            </p>
+            <p class="fragment">
+              Transform the volume element:
+              $$
+              \mathrm{d}V = r^2 \mathrm{d}r \mathrm{d}\Omega \, .
+              \implies
+              p \left( \mu \right)
+              \propto
+              r^2
+              \frac{
+                \mathrm{d}N
+              }{
+                \mathrm{d}V
+              }
+              \frac{
+                \mathrm{d}r
+              }{
+                \mathrm{d}\mu
+              } \, .
+              $$
+            </p>
+            <p class="fragment">
+              Using $\mu = 5 \log_{10} \left( \frac{r}{10\,\mathrm{pc}} \right)$ and $n \left(\mu\right) = \mathrm{d}N/\mathrm{d}V$,
+              $$
+              p \left( \mu \right)
+              \propto
+              10^{3\mu/5}
+              n \left( \mu \right) \, .
+              $$
+            </p>
+            <p class="fragment">The term $10^{3\mu/5}$ takes into account that volume per unit distance modulus increases as we look farther out. We are looking at a cone, and distance modulus is a <em>logarithmic</em> unit of volume.</p>
+          </section>
+
+          <section>
+            <h4>Model of stellar density throughout the Milky Way</h4>
+            <p class="fragment">&rarr; SDSS Tomography model (recall from lecture 1)</p>
+            <div class="fragment">
+              <div class="multicol space-top">
+                <div>
+                  <img data-src="../revealjs/media/sdss/tomography_i_density_model.svg" class="invert-colors"></img>
+                </div>
+                <div>
+                  <h4>Three-component density model</h4>
+                  <p class="fragment">Thin &amp; thick disks:
+                    $$\rho \left(R,z\right) \propto \exp\left(-\frac{R}{L}-\frac{z}{H}\right)$$
+                    $L$ = scale length, $H$ = scale height.
+                  </p>
+                  <p class="fragment space-top">Oblate halo:
+                    $$\rho \left(R,z\right) \propto \left[R^2 + \left(\frac{z}{q_H}\right)^2\right]^{-n_H}$$
+                    $q_H$ controls oblateness, $n_H$ = power-law exponent.
+                  </p>
+                </div>
+              </div>
+              <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...673..864J/abstract">Juri&cacute;+ (2008)</a></p>
+            </div>
+          </section>
+
+          <section>
+            <h4>Model of stellar density throughout the Milky Way</h4>
+            <p class="fragment" data-fragment-index=1>&rarr; SDSS Tomography model (recall from lecture 1)</p>
+            <div class="fragment" data-fragment-index=2>
+              <div class="multicol space-top">
+                <div>
+                  <div class="r-stack">
+                    <div class="fragment fade-out compact" data-fragment-index=5>
+                      <img data-src="../revealjs/media/sdss/tomography_i_density_model.svg" class="invert-colors"></img>
+                      <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...673..864J/abstract">Juri&cacute;+ (2008)</a></p>
+                    </div>
+                    <div class="fragment compact align-top" data-fragment-index=5>
+                      <h4>Result along one sightline</h4>
+                      <img data-src="../revealjs/media/bayestar/distance_prior_illustration.png"></img>
+                      <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2014ApJ...783..114G/abstract">Green+ (2014)</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h4>Three-component density model</h4>
+                  <p class="fragment" data-fragment-index=3>
+                    Thin &amp; thick disks:
+                    $$\rho \left(R,z\right) \propto \exp\left(-\frac{R}{L}-\frac{z}{H}\right)$$
+                    $L$ = scale length, $H$ = scale height.
+                  </p>
+                  <p class="fragment space-top" data-fragment-index=4>
+                    Oblate halo:
+                    $$\rho \left(R,z\right) \propto \left[R^2 + \left(\frac{z}{q_H}\right)^2\right]^{-n_H}$$
+                    $q_H$ controls oblateness, $n_H$ = power-law exponent.
+                    <span class="shrink-text">(power law "breaks" in outer halo)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+      </div> <!--slides-->
+    </div> <!--reveal-->
+
+    <script src="../revealjs/dist/reveal.js"></script>
+    <script src="../revealjs/plugin/math/math.js"></script>
+    <script>
+      Reveal.initialize({
+        history: true,
+        transition: 'linear',
+
+        math: {
+          // mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          TeX: {
+            Macros: {
+              R: '\\mathbb{R}',
+              set: [ '\\left\\{#1 \\; ; \\; #2\\right\\}', 2 ]
+            }
+          }
+        },
+
+        plugins: [ RevealMath ]
+      });
+    </script>
+
+  </body>
+</html>
