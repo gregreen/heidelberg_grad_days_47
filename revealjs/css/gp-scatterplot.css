@@ -1,0 +1,29 @@
+#gp-scatterplot {
+  outline: solid 2pt white;
+}
+
+.gp-point {
+  fill: white;
+  opacity: 0.5;
+}
+
+.gp-point.gp-point-highlighted {
+  stroke: green;
+  stroke-width: 8pt;
+  stroke-opacity: 0.5;
+  opacity: 1.0;
+}
+
+.reveal section .gp-box {
+  padding-left: 10%;
+  width: 80%;
+}
+
+.gp-column {
+  float: left;
+  width: 33.333%;
+}
+
+
+.gp-box-img img {
+}

@@ -10,6 +10,10 @@
 
     <link rel="stylesheet" href="../revealjs/dist/reveal.css">
     <link rel="stylesheet" href="../revealjs/dist/theme/night.css" id="theme">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../revealjs/css/gp-scatterplot.css">
+
   </head>
 
   <style>
@@ -51,6 +55,14 @@
       bottom: 0px;
       width: 100%;
       text-align: center;
+    }
+
+    /* Vertically center content in container */
+    .vertical-center {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      flex-direction: column;
     }
 
     /* Slide-specific vertical centering override */
@@ -111,6 +123,12 @@
     .shrink-text {
       font-size: 67%;
     }
+
+    /* iframe borders */
+    iframe {
+      border: none;
+    }
+    }
   </style>
 
   <body>
@@ -134,8 +152,9 @@
                 <ul class="space-top">
                   <li class="fragment">&lsim; 1&mu;m silicate and carbonate grains.</li>
                   <li class="fragment">Make up 1% of the mass of the ISM.</li>
-                  <li class="fragment">Absorb and scatter light: "extinction."</li>
+                  <li class="fragment">Absorb &amp; scatter light: "extinction."</li>
                 </ul>
+                <p class="fragment">&rarr; ~30% of light in Universe processed by dust.</p>
               </div>
               <div class="wide fragment">
                 <img data-src="../revealjs/media/dust/draine_extcurves.svg" class="invert-colors"></img>
@@ -144,8 +163,38 @@
             </div>
           </section>
 
+          <section>
+            <h3>Extinction as function of wavelength</h3>
+            <div class="r-stack">
+              <div class="fragment fade-out" data-fragment-index=1>
+                <h4>$\lambda \approx 2.16 \, \mathrm{\mu m}$</h4>
+                <img data-src="../revealjs/media/dust/cloud_2MASS_Ks.jpg" class="half-width"></img>
+              </div>
+              <div class="fragment current-visible" data-fragment-index=1>
+                <h4>$\lambda \approx 1.66 \, \mathrm{\mu m}$</h4>
+                <img data-src="../revealjs/media/dust/cloud_2MASS_H.jpg" class="half-width"></img>
+              </div>
+              <div class="fragment current-visible" data-fragment-index=2>
+                <h4>$\lambda \approx 1.24 \, \mathrm{\mu m}$</h4>
+                <img data-src="../revealjs/media/dust/cloud_2MASS_J.jpg" class="half-width"></img>
+              </div>
+              <div class="fragment current-visible" data-fragment-index=3>
+                <h4>$\lambda \approx 0.89 \, \mathrm{\mu m}$</h4>
+                <img data-src="../revealjs/media/dust/cloud_SDSS_z.jpg" class="half-width"></img>
+              </div>
+              <div class="fragment current-visible" data-fragment-index=4>
+                <h4>$\lambda \approx 0.75 \, \mathrm{\mu m}$</h4>
+                <img data-src="../revealjs/media/dust/cloud_SDSS_i.jpg" class="half-width"></img>
+              </div>
+              <div class="fragment current-visible" data-fragment-index=5>
+                <h4>$\lambda \approx 0.62 \, \mathrm{\mu m}$</h4>
+                <img data-src="../revealjs/media/dust/cloud_SDSS_r.jpg" class="half-width"></img>
+              </div>
+            </div>
+          </section>
+
           <section class="compact">
-            <h3>Extinction</h3>
+            <h3>Extinction: effects on stellar photometry</h3>
             <img data-src="../revealjs/media/dust/hrd_with_without_extinction.png" class="r-stretch"></img>
             <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2021ApJ...907...57G/abstract">Green+ (2021)</a></p>
             <p class="fragment space-top">Two effects:</p>
@@ -184,7 +233,7 @@
           </section>
 
           <section data-background-image="../revealjs/media/dust/sfd-stretched.jpg">
-            <h3 class="stroke-text-dark">Using far-infrared emission</h3>
+            <h3 class="stroke-text-dark">1. Using far-infrared emission</h3>
             <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/1998ApJ...500..525S/abstract">Schlegel, Finkbeiner &amp; Davis (1998)</a></p>
           </section>
 
@@ -243,8 +292,18 @@
             </aside>
           </section>
 
+          <section>
+            <h4>FIR-emission-based dust maps</h4>
+            <div class="r-stack">
+              <img data-src="../revealjs/media/dust/fir_dust_maps_allsky.svg" class="fragment fade-out" data-fragment-index=1></img>
+              <img data-src="../revealjs/media/dust/fir_dust_maps_zoom.svg" class="fragment" data-fragment-index=1></img>
+            </div>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/1998ApJ...500..525S/abstract">Schlegel, Finkbeiner &amp; Davis (1998)</a> and <a href="http://adsabs.harvard.edu/abs/2014A%26A...571A..11P">Planck Collaboration+ (2013)</a></p>
+            <p class="fragment">Originally developed for CMB subtraction, but widely used throughout astronomy.</p>
+          </section>
+
           <section data-background-image="../revealjs/media/gaia/Gaia_EDR3_flux_cartesian_2k.jpg" data-background-size="contain" data-vertical-align-top class="full-height">
-            <h3>Using stars</h3>
+            <h3>2. Using stars</h3>
             <p class="fragment">We can determine stellar distances (from parallaxes and photometry).</p>
             <p class="fragment">Stellar photometry directly traces optical &amp; NIR extinction.</p>
             <p class="fragment">&rarr; We can trace variation in the wavelength-extinction relation.</p>
@@ -309,7 +368,7 @@
           </section>
 
           <section>
-            <h4>Stellar distance & extinction: "photometric parallax"</h4>
+            <h4>Stellar distance &amp; extinction: "photometric parallax"</h4>
             <div class="multicol">
               <div>
                 <img data-src="../revealjs/media/bayestar/color_color_example.png" class="invert-colors">
@@ -336,8 +395,60 @@
             </aside>
           </section>
 
+          <section data-transition="slide-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_0.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_1.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_2.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_3.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_4.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_5.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_6.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_7.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_8.jpg" class="r-stretch"></img>
+          </section>
+
+          <section data-transition="none-in slide-out">
+            <h4>Extinction as function of distance</h4>
+            <img data-src="../revealjs/media/bayestar/reddening_vs_distance_explanation_9.jpg" class="r-stretch"></img>
+          </section>
+        </section>
+
+        <section>
           <section>
-            <h3>Forward model</h3>
+            <h3>"Bayestar" forward model</h3>
             <div class="multicol">
               <div>
                 <img data-src="../revealjs/media/bayestar/b17_factor_graph.svg" class="invert-colors"></img>
@@ -380,6 +491,20 @@
                 p \left( \hat{\varpi} \mid \mu \right)
               $$
             </p>
+            <div class="multicol fragment">
+              <div class="compact">
+                <img data-src="../revealjs/media/bayestar/stellar_model_cc.svg"></img>
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2015ApJ...810...25G/abstract">Green+ (2015)</a></p>
+              </div>
+              <div class="vertical-center">
+                <p>&larr;
+                  $
+                  p \left( \hat{m} \mid \vec{\theta}, \mu, E \right)
+                  $
+                  from empirical stellar model in PS1-2MASS (shown here in color-color space).</p>
+                <p class="fragment">Trivial parallax likelihood: $p \left( \hat{\varpi} \mid \mu \right)$</p>
+              </div>
+            </div>
           </section>
 
           <section>
@@ -458,9 +583,10 @@
                       <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...673..864J/abstract">Juri&cacute;+ (2008)</a></p>
                     </div>
                     <div class="fragment compact align-top" data-fragment-index=5>
-                      <h4>Result along one sightline</h4>
+                      <h4>Prior along one sightline</h4>
                       <img data-src="../revealjs/media/bayestar/distance_prior_illustration.png"></img>
                       <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2014ApJ...783..114G/abstract">Green+ (2014)</a></p>
+                      <p class="fragment space-top" data-fragment-index=6>Every sightline is different.</p>
                     </div>
                   </div>
                 </div>
@@ -481,6 +607,432 @@
               </div>
             </div>
           </section>
+
+          <section>
+            <h4>Stellar type prior</h4>
+            <p class="fragment">Stellar type = metallicity, luminosity.</p>
+            <p class="fragment">
+              $$
+              p \left( \left[ \mathrm{Fe}/\mathrm{H} \right] \mid \mu \right) p \left( M_r \right)
+              $$
+            </p>
+            <p class="fragment">Metallicity prior: SDSS Tomography model (again)</p>
+            <div class="multicol fragment">
+              <div>
+                <p>$p\left( \left[ \mathrm{Fe/H} \right] \mid Z \right)$ in Solar neighborhood:</p>
+                <div class="compact">
+                  <img data-src="../revealjs/media/bayestar/metallicity_prior.svg"></img>
+                  <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2008ApJ...684..287I/abstract">Ivezi&cacute;+ (2008)</a></p>
+                </div>
+              </div>
+              <div class="vertical-center">
+                <p class="fragment">&larr; Disk &amp; halo have different metallicity distributions</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>Typical stellar posterior</h4>
+            <div class="multicol">
+              <div class="fragment">
+                <p>$p\left( \mu, E \mid \hat{m}, \hat{\varpi} \right)$ in Solar neighborhood:</p>
+                <img data-src="../revealjs/media/bayestar/example_stellar_pdf.svg" class="invert-colors"></img>
+              </div>
+              <div class="fragment">
+                <p>Compare with Hertzsprung-Russel Diagram</p>
+                <img data-src="../revealjs/media/gaia/ESA_Gaia_DR2_HRD.jpg" style="transform: rotate(90deg) scale(0.75) translateX(-44%);"></img>
+                <p class="attribution" style="transform:translateY(-290px);"><a href="https://sci.esa.int/s/wKdy4dW">ESA/Gaia/DPAC</a></p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>Importance of priors</h4>
+            <div class="multicol">
+              <div class="wide">
+                <div class="compact">
+                  <img data-src="../revealjs/media/bayestar/stellar_pdfs_shifted_stacked.png" class="invert-colors"></img>
+                  <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2015ApJ...810...25G/abstract">Green+ (2015)</a></p>
+                </div>
+              </div>
+              <div class="vertical-center">
+                <p>Stellar PDFs, centered on the true values, stacked for 5000 stars (using mock data).</p>
+                <p class="fragment">Flat priors perform much worse!</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>One sightline</h4>
+            <div class="multicol">
+              <div class="wider">
+                <div class="compact">
+                  <img data-src="../revealjs/media/bayestar/example_los.svg" class="invert-colors"></img>
+                  <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2014ApJ...783..114G/abstract">Green+ (2014)</a></p>
+                </div>
+              </div>
+              <div class="vertical-center">
+                <p class="fragment">Background: stacked stellar PDFs for one mock sightline.</p>
+                <p class="fragment">Overplotted: samples of distance-reddening relation.</p>
+                <p class="fragment">Top panels: individual stellar PDFs.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>Repeat in every sightline</h4>
+            <div class="multicol">
+              <div class="wider">
+                <div class="compact">
+                  <img data-src="../revealjs/media/bayestar/pixelization.svg" class="invert-colors"></img>
+                  <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2015ApJ...810...25G/abstract">Green+ (2015)</a></p>
+                </div>
+              </div>
+              <div class="vertical-center">
+                <p class="fragment">Split up sky into pixels of a few hundred stars.</p>
+                <p class="fragment">Smaller pixels in regions with higher stellar density.</p>
+                <p class="fragment">Infer extinction vs. distance in every pixel independently.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Bayestar results</h2>
+          </section>
+
+          <section data-transition="slide-in none-out">
+            <h4>Reddening in distance slices</h4>
+            <img data-src="../revealjs/media/bayestar/bayestar19_0to500pc.svg" class="r-stretch"></img>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract">Green+ (2019)</a></p>
+          </section>
+
+          <section data-transition="none-in none-out">
+            <h4>Reddening in distance slices</h4>
+            <img data-src="../revealjs/media/bayestar/bayestar19_500to1000pc.svg" class="r-stretch"></img>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract">Green+ (2019)</a></p>
+          </section>
+
+          <section data-transition="none-in slide-out">
+            <h4>Reddening in distance slices</h4>
+            <img data-src="../revealjs/media/bayestar/bayestar19_1000to2000pc.svg" class="r-stretch"></img>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract">Green+ (2019)</a></p>
+          </section>
+
+          <section>
+            <h4>Uncertainty in the map</h4>
+            <iframe src="https://player.vimeo.com/video/335252596?autoplay=0&loop=1&autopause=0&byline=0&title=0" class="r-stretch"></iframe>
+            <p>Distance increases with time. Uncertainty represented by flickering.</p>
+          </section>
+
+          <section>
+            <h4>Galactic anticenter</h4>
+            <iframe src="https://player.vimeo.com/video/335071954?autoplay=0&loop=1&autopause=0&byline=0&title=0" class="r-stretch"></iframe>
+            <p>Orbiting the Sun at distance of 25&nbsp;pc, looking towards the anticenter.</p>
+          </section>
+
+          <section>
+            <h4>Galactic plane</h4>
+            <iframe src="https://player.vimeo.com/video/335071965?autoplay=0&loop=1&autopause=0&byline=0&title=0" class="r-stretch"></iframe>
+            <p>Oscillating above and below the Galactic plane.</p>
+          </section>
+
+          <section class="compact">
+            <h4>Bird's-eye view of the Galactic plane</h4>
+            <div class="multicol">
+              <div>
+                <img data-src="../revealjs/media/bayestar/birdseye_surf_density_scale8000_z300_median_masers_it4.jpg" class="invert-colors"></img>
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2019ApJ...887...93G/abstract">Green+ (2019)</a></p>
+              </div>
+              <div class="vertical-center">
+                <p class="fragment">Sun at the center, Galactic Center off the plot to the right.</p>
+                <p class="fragment">Overplotted: masers in high-mass star-forming regions.</p>
+                <p class="fragment">Possible spiral-arm locations are labeled.</p>
+                <p class="fragment space-top">Spiral arms visible in dust?</p>
+              </div>
+          </section>
+
+        </section>
+
+
+        <section>
+          <section>
+            <h3>Spatial priors on dust density</h3>
+          </section>
+
+          <section data-transition="slide-in none-out">
+            <h4>Non-smoothness in inferred dust density</h4>
+            <div class="multicol">
+              <div class="wide">
+                <div class="r-stack">
+                  <img data-src="../revealjs/media/gp/noise_example_0.svg" class="fragment fade-out" data-fragment-index=1></img>
+                  <img data-src="../revealjs/media/gp/noise_example_2.svg" class="fragment" data-fragment-index=1></img>
+                </div>
+              </div>
+              <div class="vertical-center">
+                <p>"Holes" in nearby slices of the dust map.</p>
+                <p class="fragment" data-fragment-index=0>&rarr; This is not what we expect the dust density field to look like in real life.</p>
+                <p class="fragment" data-fragment-index=1>Inferred dust density becomes smoother at greater distances, because it is based on a larger number of stars.</p>
+                <p class="fragment space-top" data-fragment-index=2>How to address this problem?</p>
+                <p class="fragment" data-fragment-index=3>&rarr; Fit multiple sightlines simultaneously, and impose priors that favor smooth dust density fields.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Gaussian processes</h3>
+            <h4>a quick-and-dirty review<h4>
+          </section>
+
+          <section data-state="gp-scatterplot-slide">
+            <svg id="gp-scatterplot" viewbox="0 0 1000 300"></svg>
+            <div class="gp-box" style="filter:invert(1) hue-rotate(160deg)">
+              <div id="gp-fragment-isolated" class="fragment gp-column" data-fragment-index="1">
+                <img data-src="../revealjs/media/gp/gp-hist.svg"></img>
+              </div>
+              <div id="gp-fragment-close" class="fragment gp-column" data-fragment-index="2">
+                <img data-src="../revealjs/media/gp/gp-scatter-close.svg"></img>
+              </div>
+              <div id="gp-fragment-far" class="fragment gp-column" data-fragment-index="3">
+                <img data-src="../revealjs/media/gp/gp-scatter-far.svg"></img>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Covariance kernel</h3>
+            <p>$$\left< X ( \vec{r_1} ) \, X ( \vec{r_2} ) \right> = K ( r_{12} )$$</p>
+            <img data-src="../revealjs/media/gp/gp-kernel.svg" class="plain max-vh-50 fragment invert-colors">
+          </section>
+
+          <section data-background-image="../revealjs/media/gp/gp_2d.jpg">
+            <h3 class="stroke-text-dark">Gaussian random field</h3>
+          </section>
+
+          <section data-background-image="../revealjs/media/gp/gp_2d_exp.jpg">
+            <h3 class="stroke-text-dark">exp(Gaussian random field)</h3>
+          </section>
+
+          <section>
+            <h4>Bayestar19 approach: applying Gaussian process prior iteratively</h4>
+            <div class="multicol">
+              <div class="r-stack wide">
+                <img data-src="../revealjs/media/gp/sliding_window_1.svg" class="invert-colors fragment" data-fragment-index=2></img>
+                <img data-src="../revealjs/media/gp/sliding_window_2.svg" class="invert-colors fragment" data-fragment-index=3></img>
+                <img data-src="../revealjs/media/gp/sliding_window_3.svg" class="invert-colors fragment" data-fragment-index=4></img>
+              </div>
+              <div>
+                <p class="fragment" data-fragment-index=1>1. Infer dust in each signtline <em>independently</em>.</p>
+                <p class="fragment" data-fragment-index=2>2. Go back to each sightline, and infer its dust again, <em>taking into account the dust in nearby pixels</em>.</p>
+                <p class="fragment" data-fragment-index=3>3. Repeat <em>N</em> times, increasing correlation length to desired level.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4>With and without Gaussian process prior</h4>
+            <iframe src="https://player.vimeo.com/video/395701503?autoplay=0&loop=1&autopause=0&byline=0&title=0" class="r-stretch"></iframe>
+          </section>
+
+          <section>
+            <h3>Correlating the stars directly</h3>
+            <h4><a href="https://ui.adsabs.harvard.edu/abs/2017A%26A...598A.125R/abstract">Rezaei+ (2017)</a></h4>
+            <div class="multicol">
+              <div>
+                <img data-src="../revealjs/media/gp/rezaei_gp_los.png" class="fragment"></img>
+              </div>
+              <div class="wider shrink-text">
+                <p class="fragment">
+                  Extinction of star $n$:
+                  $$
+                  a_n
+                  \propto \int_0^{r_n} \!\!\!\!\!\! \rho \left(r\right) \mathrm{d}r
+                  \approx \sum_j G_{n,j} \rho_{j}
+                  \, ,
+                  $$
+                  where $\rho_j$ are the densities at all the "knots" along all the sightlines, and $G_{n,j}$ describes which knots are along the sightline for star $n$.
+                </p>
+                <p class="fragment">
+                  The densities at the different "knots" are correlated with one another, through a Gaussian process:
+                  $$
+                  p \left( \vec{\rho} \right)
+                  \propto
+                  \exp \left( -\frac{1}{2} \vec{\rho}^T C_{\rho}^{-1} \vec{\rho} \right)
+                  \, .
+                  $$
+                </p>
+                <p class="fragment">
+                  A linear transformation of a Gaussian is a Gaussian, so the prior on $\vec{a}$ is Gaussian, with
+                  $$
+                  \vec{\mu}_a = G \vec{\mu}_{\rho}
+                  ,\hspace{1em}
+                  C_a = G C_{\rho} G^T
+                  \, .
+                  $$
+                </p>
+                <p class="fragment">Likelihood of $\vec{a}$ comes from observations of stellar photometry.</p>
+                <p class="fragment">&rArr; There is a straightforward way to predict the (Gaussian) posterior of $\rho$ at any new point in space.</p>
+                <!--
+                <p class="fragment">
+                  Predict the dust density at a new point, $\rho^{\ast}$:
+                  $$
+                  p \left( \rho^{\ast}\! \mid \vec{a} \right)
+                  =
+                  \int p \left( \rho^{\ast}\! , \vec{\rho} \mid \vec{a} \right) \mathrm{d}\vec{\rho}
+                  =
+                  \frac{1}{p\left(\vec{a}\right)}
+                  \int p \left( \rho^{\ast}\! \mid \vec{\rho} \right) p \left( \vec{\rho} \mid \vec{a} \right) \mathrm{d}\vec{\rho}
+                  $$
+                </p>
+                -->
+              </div>
+            </div>
+          </section>
+          
+          <section>
+            <h4>Results: structure of the Orion clouds</h4>
+            <img data-src="../revealjs/media/gp/Rezaei_Orion.png" class="invert-colors limit-width"></img>
+            <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2020A%26A...643A.151R/abstract">Rezaei+ (2020)</a></p>
+          </section>
+
+          <section>
+            <h3>Variational inference with a log-normal prior</h3>
+            <h4>Leike+ (<a href="https://ui.adsabs.harvard.edu/abs/2019A%26A...631A..32L/abstract">2019</a>, <a href="https://ui.adsabs.harvard.edu/abs/2020A%26A...639A.138L/abstract">2020</a>)</h4>
+            <div class="multicol">
+              <div class="r-stack">
+                <img data-src="../revealjs/media/gp/leike_planemean0.png" class="fragment current-visible full-width align-top" data-fragment-index=5></img>
+                <img data-src="../revealjs/media/gp/leike_planemean1.png" class="fragment current-visible full-width align-top" data-fragment-index=6></img>
+                <img data-src="../revealjs/media/gp/leike_planemean2.png" class="fragment full-width align-top" data-fragment-index=7></img>
+              </div>
+              <div>
+                <p class="fragment" data-fragment-index=1>
+                  Prior: logarithm of density is a Gaussian process:
+                  $$
+                  \rho \sim \exp\left( \mathcal{GP} \right)
+                  $$
+                </p>
+                <p class="fragment" data-fragment-index=2>Infer large volumes at once: not sightline-by-sightline.</p>
+                <p class="fragment" data-fragment-index=3>Variational method: approximate the posterior as a Gaussian, and minimize difference between variational <em>Ansatz</em> and the true posterior.</p>
+                <p class="fragment" data-fragment-index=4>Models dust out to ~400&nbsp;pc.</p>
+                <p class="fragment" data-fragment-index=8>&rarr; Very high resolution for nearby dust.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Variations in dust properties</h3>
+            <div class="multicol space-top">
+              <div class="wider">
+                <img data-src="../revealjs/media/dust_rv/RV_Fitzpatrick1999.png"></img>
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/1999PASP..111...63F/abstract">Fitzpatrick 1999</a></p>
+              </div>
+              <div>
+                <p class="fragment">Dust wavelength-extinction relation varies throughout the Milky Way.</p>
+                <p class="fragment">&rarr; Primary effect in the optical: variation in dust grain-size distribution.</p>
+                <p class="fragment">
+                  Parameterized by the ratio of <em>extinction</em> to <em>reddening</em> in optical wavelengths:
+                  $$
+                  A\left(V\right) = R\left(V\right) E\left(B-V\right)
+                  $$
+                </p>
+                <p class="fragment">&rarr; Slope of the extinction-wavelength relation.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Pair method</h3>
+            <div class="multicol">
+              <div class="compact fragment" data-fragment-index=4>
+                <p>Stellar model colors</p>
+                <img data-src="../revealjs/media/dust_rv/apogee_model_colors.svg" class="" style="filter: invert(1) hue-rotate(160deg);">
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2016ApJ...821...78S/abstract">Schlafly+ (2016)</a></p>
+              </div>
+              <div class="wide">
+                <p class="fragment" data-fragment-index=0><b>Basic idea:</b> compare unreddened and reddened stars of same spectroscopic type.</p>
+                <p class="fragment space-top" data-fragment-index=1>Match spectroscopic survey (APOGEE) to photometric surveys (PS1, 2MASS, WISE).</p>
+                <p class="fragment" data-fragment-index=2>
+                  Model colors of star $k$ as a function of spectroscopic type and reddening:
+                  $$
+                  \vec{c}_k =
+                    \vec{f} \left( T_{\mathrm{eff},\,k}, \, \left[ \mathrm{Fe} / \mathrm{H} \right]_k \right)
+                    + \vec{R}_0 \, E_k
+                  \, .
+                  $$
+                </p>
+                <p class="fragment" data-fragment-index=3>The function $\vec{f}$ and reddening vector $\vec{R}_0$ are constrained by a large number of stars.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Reddening of each star</h3>
+            <div class="multicol">
+              <div class="compact fragment" data-fragment-index=4>
+                <p>Stellar reddenings, based on pair method:</p>
+                <img data-src="../revealjs/media/dust_rv/apogee_reddenings.svg" style="filter: invert(1) hue-rotate(160deg);"></img>
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2016ApJ...821...78S/abstract">Schlafly+ (2016)</a></p>
+              </div>
+              <div>
+                <p class="fragment" data-fragment-index=1>Above, we only determined $\vec{R}_0$, the average reddening vector.</p>
+                <p class="fragment" data-fragment-index=2>&rarr; What if it varies in space?</p>
+                <p class="fragment" data-fragment-index=3>
+                  Difference between observed and model color:
+                  $$\vec{\delta c} \equiv \hat{c} - \vec{c}_{\mathrm{model}} = \hat{c} - \vec{f} \left( T_{\mathrm{eff}}, \, \left[ \mathrm{Fe} / \mathrm{H} \right] \right) \, .$$
+                </p>
+                <p class="space-top fragment" data-fragment-index=5>&larr; Reddenings don't necessarily lie along $\vec{R}_0$.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h4 class="no-bottom-margin">Principal-component analysis of stellar reddenings</h4>
+            <div class="multicol">
+              <div class="compact">
+                <img data-src="../revealjs/media/dust_rv/apogee_pcs.svg" class="invert-colors">
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2016ApJ...821...78S/abstract">Schlafly+ (2016)</a></p>
+              </div>
+              <div class="vertical-center">
+                <p>&larr; Find the main axes in <em>color-space</em> along which dust reddening moves stars.</p>
+                <p class="fragment space-top">The 1st principal component is the <em>mean reddening relation</em>.</p>
+                <p class="fragment">The 2nd principal component corresponds to $R\left(V\right)$ variation.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="multicol">
+              <div class="wider">
+                <h4>Distribution of $R\left(V\right)$ over the sky</h4>
+                <img data-src="../revealjs/media/dust_rv/apogee_RV_map.svg" style="filter: invert(1) hue-rotate(160deg);">
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2016ApJ...821...78S/abstract">Schlafly+ (2016)</a></p>
+                <p class="fragment">Use stellar $R\left(V\right)$ measurements in combination with 3D dust map to determine $R\left(V\right)$ in 3D.</p>
+              </div>
+              <div class="vertical-center fragment">
+                <h4 >$R\left(V\right)$ in 3D</h4>
+                <img data-src="../revealjs/media/dust_rv/RV_variation_birdseye.svg" style="filter: invert(1) hue-rotate(160deg);">
+                <p class="attribution"><a href="https://ui.adsabs.harvard.edu/abs/2017ApJ...838...36S/abstract">Schlafly, Peek, Finkbeiner, Green (2017)</a></p>
+                <p class="fragment">&rarr; Unexpectedly large-scale variations in dust properties.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <h3>Final thought: determining dust from star counts?</h3>
+          <img data-src="../revealjs/media/decaps/DECaPS-cutout.jpg" class="r-stretch"></img>
+          <p class="attribution">The <a href="decaps.skymaps.info">DECaPS survey</a></p>
+          <p class="fragment space-top">There is a mathematical framework for this: <b>Poisson point processes</b> (<a href="https://ui.adsabs.harvard.edu/abs/2015MNRAS.452.2960S/abstract">Sale+ 2015</a>).</p>
+        </section>
+
+        <section data-background-video="https://dust-media.s3.amazonaws.com/videos/3D/bayestar19/grand_tour_stars_corr.mp4" data-background-video-loop="true">
+          <h3>Mapping dust ...</h3>
+          <p>... is important for many areas of astronomy.</p>
+          <p>... gives us a window into the structure of our galaxy.</p>
+          <p>... involves many interesting inference techniques and datasets.</p>
         </section>
 
       </div> <!--slides-->
@@ -507,6 +1059,14 @@
         plugins: [ RevealMath ]
       });
     </script>
+
+    <!-- jQuery -->
+    <script src="../revealjs/js/jquery.min.js"></script>
+    <!-- d3 -->
+    <script src="../revealjs/js/d3.v3.min.js" charset="utf-8"></script>
+    <!-- Custom scripts -->
+    <script src="../revealjs/js/gp_scatterplot.js"></script>
+
 
   </body>
 </html>
